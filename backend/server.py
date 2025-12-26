@@ -96,6 +96,7 @@ async def initialize_menu():
     count = await db.menu_items.count_documents({})
     if count == 0:
         menu_data = [
+            # 18-INCH PIZZA
             {"id": "pizza-margherita", "name": "Margherita", "category": "18-inch-pizza", "price": 699, "cogs": 260, "stock": 50, "tier": "classic", "image": "https://images.unsplash.com/photo-1692737580547-b45bb4a02356?w=400"},
             {"id": "pizza-periperi", "name": "Peri Peri Cheese", "category": "18-inch-pizza", "price": 699, "cogs": 260, "stock": 50, "tier": "classic", "image": "https://images.unsplash.com/photo-1564271822403-0e2f9f11b16e?w=400"},
             {"id": "pizza-desi", "name": "Desi Masala Veg", "category": "18-inch-pizza", "price": 699, "cogs": 260, "stock": 50, "tier": "classic", "image": "https://images.unsplash.com/photo-1692737580547-b45bb4a02356?w=400"},
@@ -104,30 +105,77 @@ async def initialize_menu():
             {"id": "pizza-bbq", "name": "Smoky BBQ Paneer", "category": "18-inch-pizza", "price": 849, "cogs": 290, "stock": 50, "tier": "signature", "image": "https://images.unsplash.com/photo-1564271822403-0e2f9f11b16e?w=400"},
             {"id": "pizza-tandoori", "name": "Tandoori Alfredo Paneer", "category": "18-inch-pizza", "price": 999, "cogs": 330, "stock": 50, "tier": "premium", "image": "https://images.unsplash.com/photo-1692737580547-b45bb4a02356?w=400"},
             
+            # GIANT SLICES (7 items)
             {"id": "slice-margherita", "name": "Margherita Slice", "category": "giant-slice", "price": 149, "cogs": 48, "stock": 100, "tier": "classic", "image": "https://images.unsplash.com/photo-1564271822403-0e2f9f11b16e?w=400"},
-            {"id": "slice-paneer-tikka", "name": "Paneer Tikka Slice", "category": "giant-slice", "price": 179, "cogs": 48, "stock": 100, "tier": "signature", "image": "https://images.unsplash.com/photo-1692737580547-b45bb4a02356?w=400"},
-            {"id": "slice-tandoori", "name": "Tandoori Alfredo Slice", "category": "giant-slice", "price": 199, "cogs": 55, "stock": 100, "tier": "premium", "image": "https://images.unsplash.com/photo-1564271822403-0e2f9f11b16e?w=400"},
+            {"id": "slice-periperi", "name": "Peri Peri Cheese Slice", "category": "giant-slice", "price": 149, "cogs": 48, "stock": 100, "tier": "classic", "image": "https://images.unsplash.com/photo-1692737580547-b45bb4a02356?w=400"},
+            {"id": "slice-desi", "name": "Desi Masala Veg Slice", "category": "giant-slice", "price": 149, "cogs": 48, "stock": 100, "tier": "classic", "image": "https://images.unsplash.com/photo-1564271822403-0e2f9f11b16e?w=400"},
+            {"id": "slice-paneer-tikka", "name": "Paneer Tikka Masala Slice", "category": "giant-slice", "price": 179, "cogs": 48, "stock": 100, "tier": "signature", "image": "https://images.unsplash.com/photo-1692737580547-b45bb4a02356?w=400"},
+            {"id": "slice-mexican", "name": "Mexican Masala Veg Slice", "category": "giant-slice", "price": 179, "cogs": 48, "stock": 100, "tier": "signature", "image": "https://images.unsplash.com/photo-1564271822403-0e2f9f11b16e?w=400"},
+            {"id": "slice-bbq", "name": "Smoky BBQ Paneer Slice", "category": "giant-slice", "price": 179, "cogs": 48, "stock": 100, "tier": "signature", "image": "https://images.unsplash.com/photo-1692737580547-b45bb4a02356?w=400"},
+            {"id": "slice-tandoori", "name": "Tandoori Alfredo Paneer Slice", "category": "giant-slice", "price": 199, "cogs": 55, "stock": 100, "tier": "premium", "image": "https://images.unsplash.com/photo-1564271822403-0e2f9f11b16e?w=400"},
             
+            # POCKET PIZZA (7 items)
             {"id": "pocket-margherita", "name": "Margherita Pocket", "category": "pocket-pizza", "price": 149, "cogs": 45, "stock": 100, "image": "https://images.unsplash.com/photo-1692737580547-b45bb4a02356?w=400"},
             {"id": "pocket-periperi", "name": "Peri Peri Cheese Pocket", "category": "pocket-pizza", "price": 159, "cogs": 48, "stock": 100, "image": "https://images.unsplash.com/photo-1564271822403-0e2f9f11b16e?w=400"},
-            {"id": "pocket-paneer-tikka", "name": "Paneer Tikka Masala Pocket", "category": "pocket-pizza", "price": 179, "cogs": 58, "stock": 100, "image": "https://images.unsplash.com/photo-1692737580547-b45bb4a02356?w=400"},
+            {"id": "pocket-desi", "name": "Desi Masala Veg Pocket", "category": "pocket-pizza", "price": 159, "cogs": 50, "stock": 100, "image": "https://images.unsplash.com/photo-1692737580547-b45bb4a02356?w=400"},
+            {"id": "pocket-paneer-tikka", "name": "Paneer Tikka Masala Pocket", "category": "pocket-pizza", "price": 179, "cogs": 58, "stock": 100, "image": "https://images.unsplash.com/photo-1564271822403-0e2f9f11b16e?w=400"},
+            {"id": "pocket-mexican", "name": "Mexican Masala Veg Pocket", "category": "pocket-pizza", "price": 169, "cogs": 52, "stock": 100, "image": "https://images.unsplash.com/photo-1692737580547-b45bb4a02356?w=400"},
             {"id": "pocket-house-special", "name": "House Special Pocket", "category": "pocket-pizza", "price": 189, "cogs": 55, "stock": 100, "image": "https://images.unsplash.com/photo-1564271822403-0e2f9f11b16e?w=400"},
             {"id": "pocket-tandoori", "name": "Tandoori Alfredo Pocket", "category": "pocket-pizza", "price": 199, "cogs": 65, "stock": 100, "image": "https://images.unsplash.com/photo-1692737580547-b45bb4a02356?w=400"},
             
+            # SIDES
             {"id": "side-garlic-bread", "name": "Cheese Garlic Bread", "category": "sides", "price": 129, "cogs": 42, "stock": 100, "image": "https://images.unsplash.com/photo-1569409611632-b87901f4c74a?w=400"},
             {"id": "side-fries", "name": "Classic French Fries", "category": "sides", "price": 99, "cogs": 30, "stock": 100, "image": "https://images.unsplash.com/photo-1569409611632-b87901f4c74a?w=400"},
             {"id": "side-curly-fries", "name": "Curly Masala Fries", "category": "sides", "price": 129, "cogs": 38, "stock": 100, "image": "https://images.unsplash.com/photo-1569409611632-b87901f4c74a?w=400"},
             {"id": "side-wedges", "name": "Potato Wedges", "category": "sides", "price": 119, "cogs": 35, "stock": 100, "image": "https://images.unsplash.com/photo-1569409611632-b87901f4c74a?w=400"},
             
+            # DIPS
             {"id": "dip-tandoori", "name": "Tandoori Mayo", "category": "dips", "price": 20, "cogs": 6, "stock": 200},
             {"id": "dip-garlic", "name": "Garlic Cheese Dip", "category": "dips", "price": 25, "cogs": 8, "stock": 200},
             {"id": "dip-periperi", "name": "Peri Peri Dip", "category": "dips", "price": 20, "cogs": 5, "stock": 200},
             {"id": "dip-bbq", "name": "Smoky BBQ Dip", "category": "dips", "price": 25, "cogs": 7, "stock": 200},
             
+            # DRINKS
             {"id": "drink-cola", "name": "Cola (200ml)", "category": "drinks", "price": 40, "cogs": 22, "stock": 200, "image": "https://images.pexels.com/photos/3490367/pexels-photo-3490367.jpeg?w=400"},
             {"id": "drink-orange", "name": "Orange Soda (200ml)", "category": "drinks", "price": 40, "cogs": 22, "stock": 200, "image": "https://images.pexels.com/photos/3490367/pexels-photo-3490367.jpeg?w=400"},
             {"id": "drink-lemon-tea", "name": "Iced Tea - Lemon", "category": "drinks", "price": 80, "cogs": 32, "stock": 200, "image": "https://images.pexels.com/photos/3490367/pexels-photo-3490367.jpeg?w=400"},
             {"id": "drink-peach-tea", "name": "Iced Tea - Peach", "category": "drinks", "price": 80, "cogs": 32, "stock": 200, "image": "https://images.pexels.com/photos/3490367/pexels-photo-3490367.jpeg?w=400"},
+            
+            # SLICE COMBOS (7 combos)
+            {"id": "combo-slice-margherita", "name": "Margherita Slice Combo", "category": "slice-combos", "price": 249, "cogs": 80, "stock": 100, "description": "Margherita Slice + Fries + Cola", "image": "https://images.unsplash.com/photo-1564271822403-0e2f9f11b16e?w=400"},
+            {"id": "combo-slice-periperi", "name": "Peri Peri Cheese Slice Combo", "category": "slice-combos", "price": 249, "cogs": 80, "stock": 100, "description": "Peri Peri Cheese Slice + Fries + Cola", "image": "https://images.unsplash.com/photo-1692737580547-b45bb4a02356?w=400"},
+            {"id": "combo-slice-desi", "name": "Desi Masala Veg Slice Combo", "category": "slice-combos", "price": 249, "cogs": 80, "stock": 100, "description": "Desi Masala Veg Slice + Fries + Cola", "image": "https://images.unsplash.com/photo-1564271822403-0e2f9f11b16e?w=400"},
+            {"id": "combo-slice-paneer", "name": "Paneer Tikka Masala Slice Combo", "category": "slice-combos", "price": 279, "cogs": 88, "stock": 100, "description": "Paneer Tikka Masala Slice + Fries/Wedges + Iced Tea", "image": "https://images.unsplash.com/photo-1692737580547-b45bb4a02356?w=400"},
+            {"id": "combo-slice-mexican", "name": "Mexican Masala Veg Slice Combo", "category": "slice-combos", "price": 279, "cogs": 88, "stock": 100, "description": "Mexican Masala Veg Slice + Fries/Wedges + Iced Tea", "image": "https://images.unsplash.com/photo-1564271822403-0e2f9f11b16e?w=400"},
+            {"id": "combo-slice-bbq", "name": "Smoky BBQ Paneer Slice Combo", "category": "slice-combos", "price": 279, "cogs": 88, "stock": 100, "description": "Smoky BBQ Paneer Slice + Fries/Wedges + Iced Tea", "image": "https://images.unsplash.com/photo-1692737580547-b45bb4a02356?w=400"},
+            {"id": "combo-slice-tandoori", "name": "Tandoori Alfredo Paneer Slice Combo", "category": "slice-combos", "price": 299, "cogs": 93, "stock": 100, "description": "Tandoori Alfredo Paneer Slice + Curly Fries/Wedges + Iced Tea", "image": "https://images.unsplash.com/photo-1564271822403-0e2f9f11b16e?w=400"},
+            
+            # POCKET PIZZA COMBOS (7 combos)
+            {"id": "combo-pocket-margherita", "name": "Margherita Pocket Combo", "category": "pocket-combos", "price": 229, "cogs": 67, "stock": 100, "description": "Margherita Pocket + Fries + Cola", "image": "https://images.unsplash.com/photo-1692737580547-b45bb4a02356?w=400"},
+            {"id": "combo-pocket-periperi", "name": "Peri Peri Cheese Pocket Combo", "category": "pocket-combos", "price": 229, "cogs": 70, "stock": 100, "description": "Peri Peri Cheese Pocket + Fries + Cola", "image": "https://images.unsplash.com/photo-1564271822403-0e2f9f11b16e?w=400"},
+            {"id": "combo-pocket-desi", "name": "Desi Masala Veg Pocket Combo", "category": "pocket-combos", "price": 229, "cogs": 72, "stock": 100, "description": "Desi Masala Veg Pocket + Fries + Cola", "image": "https://images.unsplash.com/photo-1692737580547-b45bb4a02356?w=400"},
+            {"id": "combo-pocket-paneer", "name": "Paneer Tikka Masala Pocket Combo", "category": "pocket-combos", "price": 259, "cogs": 90, "stock": 100, "description": "Paneer Tikka Masala Pocket + Fries/Wedges + Drink", "image": "https://images.unsplash.com/photo-1564271822403-0e2f9f11b16e?w=400"},
+            {"id": "combo-pocket-mexican", "name": "Mexican Masala Veg Pocket Combo", "category": "pocket-combos", "price": 259, "cogs": 84, "stock": 100, "description": "Mexican Masala Veg Pocket + Fries/Wedges + Drink", "image": "https://images.unsplash.com/photo-1692737580547-b45bb4a02356?w=400"},
+            {"id": "combo-pocket-house", "name": "House Special Pocket Combo", "category": "pocket-combos", "price": 279, "cogs": 83, "stock": 100, "description": "House Special Pocket + Curly Fries/Wedges + Iced Tea", "image": "https://images.unsplash.com/photo-1564271822403-0e2f9f11b16e?w=400"},
+            {"id": "combo-pocket-tandoori", "name": "Tandoori Alfredo Pocket Combo", "category": "pocket-combos", "price": 299, "cogs": 103, "stock": 100, "description": "Tandoori Alfredo Pocket + Curly Fries/Wedges + Iced Tea", "image": "https://images.unsplash.com/photo-1692737580547-b45bb4a02356?w=400"},
+            
+            # 18" PIZZA FAMILY COMBOS (7 combos)
+            {"id": "family-pizza-margherita", "name": "Margherita Family Combo", "category": "pizza-family-combos", "price": 999, "cogs": 420, "stock": 50, "description": "Margherita 18\" Pizza + 2 Fries + 2 Cola", "image": "https://images.unsplash.com/photo-1692737580547-b45bb4a02356?w=400"},
+            {"id": "family-pizza-periperi", "name": "Peri Peri Cheese Family Combo", "category": "pizza-family-combos", "price": 999, "cogs": 420, "stock": 50, "description": "Peri Peri Cheese 18\" Pizza + 2 Fries + 2 Cola", "image": "https://images.unsplash.com/photo-1564271822403-0e2f9f11b16e?w=400"},
+            {"id": "family-pizza-desi", "name": "Desi Masala Veg Family Combo", "category": "pizza-family-combos", "price": 999, "cogs": 420, "stock": 50, "description": "Desi Masala Veg 18\" Pizza + 2 Fries + 2 Cola", "image": "https://images.unsplash.com/photo-1692737580547-b45bb4a02356?w=400"},
+            {"id": "family-pizza-paneer", "name": "Paneer Tikka Masala Family Combo", "category": "pizza-family-combos", "price": 1049, "cogs": 450, "stock": 50, "description": "Paneer Tikka Masala 18\" Pizza + 2 Fries/Wedges + 2 Iced Tea", "image": "https://images.unsplash.com/photo-1564271822403-0e2f9f11b16e?w=400"},
+            {"id": "family-pizza-mexican", "name": "Mexican Masala Veg Family Combo", "category": "pizza-family-combos", "price": 1049, "cogs": 450, "stock": 50, "description": "Mexican Masala Veg 18\" Pizza + 2 Fries/Wedges + 2 Iced Tea", "image": "https://images.unsplash.com/photo-1692737580547-b45bb4a02356?w=400"},
+            {"id": "family-pizza-bbq", "name": "Smoky BBQ Paneer Family Combo", "category": "pizza-family-combos", "price": 1049, "cogs": 450, "stock": 50, "description": "Smoky BBQ Paneer 18\" Pizza + 2 Fries/Wedges + 2 Iced Tea", "image": "https://images.unsplash.com/photo-1692737580547-b45bb4a02356?w=400"},
+            {"id": "family-pizza-tandoori", "name": "Tandoori Alfredo Paneer Family Combo", "category": "pizza-family-combos", "price": 1099, "cogs": 490, "stock": 50, "description": "Tandoori Alfredo Paneer 18\" Pizza + 2 Curly Fries/Wedges + 2 Iced Tea", "image": "https://images.unsplash.com/photo-1564271822403-0e2f9f11b16e?w=400"},
+            
+            # POCKET PIZZA FAMILY COMBOS (7 combos)
+            {"id": "family-pocket-margherita", "name": "Margherita Pocket Family Combo", "category": "pocket-family-combos", "price": 699, "cogs": 320, "stock": 50, "description": "4 Margherita Pockets + 2 Fries + 2 Drinks", "image": "https://images.unsplash.com/photo-1692737580547-b45bb4a02356?w=400"},
+            {"id": "family-pocket-periperi", "name": "Peri Peri Cheese Pocket Family Combo", "category": "pocket-family-combos", "price": 699, "cogs": 320, "stock": 50, "description": "4 Peri Peri Cheese Pockets + 2 Fries + 2 Drinks", "image": "https://images.unsplash.com/photo-1564271822403-0e2f9f11b16e?w=400"},
+            {"id": "family-pocket-desi", "name": "Desi Masala Veg Pocket Family Combo", "category": "pocket-family-combos", "price": 699, "cogs": 320, "stock": 50, "description": "4 Desi Masala Veg Pockets + 2 Fries + 2 Drinks", "image": "https://images.unsplash.com/photo-1692737580547-b45bb4a02356?w=400"},
+            {"id": "family-pocket-paneer", "name": "Paneer Tikka Masala Pocket Family Combo", "category": "pocket-family-combos", "price": 749, "cogs": 350, "stock": 50, "description": "4 Paneer Tikka Masala Pockets + 2 Fries/Wedges + Drinks", "image": "https://images.unsplash.com/photo-1564271822403-0e2f9f11b16e?w=400"},
+            {"id": "family-pocket-mexican", "name": "Mexican Masala Veg Pocket Family Combo", "category": "pocket-family-combos", "price": 749, "cogs": 350, "stock": 50, "description": "4 Mexican Masala Veg Pockets + 2 Fries/Wedges + Drinks", "image": "https://images.unsplash.com/photo-1692737580547-b45bb4a02356?w=400"},
+            {"id": "family-pocket-house", "name": "House Special Pocket Family Combo", "category": "pocket-family-combos", "price": 799, "cogs": 370, "stock": 50, "description": "4 House Special Pockets + 2 Curly Fries/Wedges + 2 Iced Tea", "image": "https://images.unsplash.com/photo-1564271822403-0e2f9f11b16e?w=400"},
+            {"id": "family-pocket-tandoori", "name": "Tandoori Alfredo Pocket Family Combo", "category": "pocket-family-combos", "price": 849, "cogs": 410, "stock": 50, "description": "4 Tandoori Alfredo Pockets + 2 Curly Fries/Wedges + 2 Iced Tea", "image": "https://images.unsplash.com/photo-1692737580547-b45bb4a02356?w=400"},
         ]
         await db.menu_items.insert_many(menu_data)
 
