@@ -10,7 +10,9 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Label } from '@/components/ui/label';
 import { ScrollArea } from '@/components/ui/scroll-area';
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import Sidebar from '@/components/Sidebar';
+import TableSelection from '@/components/TableSelection';
 import PrintReceipt from '@/components/PrintReceipt';
 import { useReactToPrint } from 'react-to-print';
 
@@ -36,10 +38,13 @@ const POSScreen = () => {
   const [paymentType, setPaymentType] = useState('cash');
   const [loading, setLoading] = useState(false);
   const [lastOrder, setLastOrder] = useState(null);
+  const [showTableDialog, setShowTableDialog] = useState(false);
+  const [currentOrders, setCurrentOrders] = useState([]);
   const printRef = useRef();
 
   useEffect(() => {
     fetchMenu();
+    fetchCurrentOrders();
   }, []);
 
   const fetchMenu = async () => {
@@ -48,6 +53,15 @@ const POSScreen = () => {
       setMenuItems(response.data);
     } catch (error) {
       toast.error('Failed to load menu');
+    }
+  };
+
+  const fetchCurrentOrders = async () => {
+    try {
+      const response = await axios.get(`${API}/orders?limit=50`);
+      setCurrentOrders(response.data);
+    } catch (error) {
+      console.log('Failed to load current orders');
     }
   };
 
