@@ -137,8 +137,8 @@ const POSScreen = () => {
       return;
     }
 
-    if (orderType === 'dine-in' && !tableToken.trim()) {
-      toast.error('Please enter table/token number');
+    if (!tableToken.trim()) {
+      setShowTableDialog(true);
       return;
     }
 
