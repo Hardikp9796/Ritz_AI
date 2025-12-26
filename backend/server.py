@@ -292,7 +292,14 @@ async def get_sales_analytics(period: str = "today"):
 
 @api_router.get("/analytics/best-sellers")
 async def get_best_sellers():
-    orders = await db.orders.find({}, {"_id": 0}).to_list(10000)
+    from datetime import timedelta
+    
+    # Only fetch orders from last 30 days for performance
+    thirty_days_ago = datetime.now(timezone.utc) - timedelta(days=30)
+    orders = await db.orders.find(
+        {"timestamp": {"$gte": thirty_days_ago.isoformat()}},
+        {"_id": 0, "items": 1}
+    ).limit(1000).to_list(1000)
     
     item_sales = {}
     for order in orders:
