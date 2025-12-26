@@ -298,32 +298,20 @@ const POSScreen = () => {
           </h2>
 
           <div className="space-y-4 mb-6">
-            <div>
-              <Label className="text-slate-300 text-sm uppercase tracking-wider mb-2 block">Order Type</Label>
-              <RadioGroup value={orderType} onValueChange={setOrderType} data-testid="order-type-selector">
-                <div className="flex items-center space-x-2 bg-slate-800 p-3 rounded-lg">
-                  <RadioGroupItem value="dine-in" id="dine-in" data-testid="order-type-dine-in" />
-                  <Label htmlFor="dine-in" className="cursor-pointer flex-1">Dine-In</Label>
+            <Button
+              onClick={() => setShowTableDialog(true)}
+              className="w-full h-16 bg-slate-800 border-2 border-slate-700 hover:border-orange-500 text-slate-100"
+              data-testid="select-table-button"
+            >
+              <div className="text-left w-full">
+                <div className="text-xs text-slate-400 uppercase tracking-wider mb-1">
+                  {orderType === 'dine-in' ? 'Table' : 'Takeaway'}
                 </div>
-                <div className="flex items-center space-x-2 bg-slate-800 p-3 rounded-lg">
-                  <RadioGroupItem value="takeaway" id="takeaway" data-testid="order-type-takeaway" />
-                  <Label htmlFor="takeaway" className="cursor-pointer flex-1">Takeaway</Label>
+                <div className="font-secondary text-2xl text-orange-500">
+                  {tableToken || 'Select Table/Parcel'}
                 </div>
-              </RadioGroup>
-            </div>
-
-            {orderType === 'dine-in' && (
-              <div>
-                <Label className="text-slate-300 text-sm uppercase tracking-wider mb-2 block">Table/Token Number</Label>
-                <Input
-                  value={tableToken}
-                  onChange={(e) => setTableToken(e.target.value)}
-                  placeholder="Enter table or token number"
-                  className="bg-slate-800 border-slate-700 focus:border-orange-500"
-                  data-testid="table-token-input"
-                />
               </div>
-            )}
+            </Button>
           </div>
         </div>
 
