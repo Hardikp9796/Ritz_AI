@@ -4,6 +4,7 @@ import POSScreen from '@/pages/POSScreen';
 import OrderHistory from '@/pages/OrderHistory';
 import Inventory from '@/pages/Inventory';
 import Analytics from '@/pages/Analytics';
+import Settings from '@/pages/Settings';
 import { Toaster } from '@/components/ui/sonner';
 
 function App() {
