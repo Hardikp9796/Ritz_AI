@@ -208,10 +208,18 @@ const POSScreen = () => {
       setCart([]);
       setTableToken('');
       setLoading(false);
+      fetchCurrentOrders();
     } catch (error) {
       toast.error('Failed to place order');
       setLoading(false);
     }
+  };
+
+  const handleTableSelect = (tableId, type) => {
+    setTableToken(tableId);
+    setOrderType(type);
+    setShowTableDialog(false);
+    toast.success(`${tableId} selected`);
   };
 
   return (
