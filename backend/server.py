@@ -81,6 +81,20 @@ class RazorpayOrderResponse(BaseModel):
     currency: str
     key_id: str
 
+class Offer(BaseModel):
+    model_config = ConfigDict(extra="ignore")
+    id: str = Field(default_factory=lambda: str(uuid.uuid4()))
+    name: str
+    discount_percent: float
+    applicable_categories: List[str] = []
+    active: bool = True
+    created_at: str = Field(default_factory=lambda: datetime.now(timezone.utc).isoformat())
+
+class OfferCreate(BaseModel):
+    name: str
+    discount_percent: float
+    applicable_categories: List[str] = []
+
 class AnalyticsResponse(BaseModel):
     model_config = ConfigDict(extra="ignore")
     total_sales: float
