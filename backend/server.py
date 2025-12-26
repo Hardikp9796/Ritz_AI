@@ -347,6 +347,27 @@ async def verify_payment(payment_data: Dict[str, Any]):
     except Exception as e:
         raise HTTPException(status_code=400, detail=str(e))
 
+@api_router.get("/offers", response_model=List[Offer])
+async def get_offers():
+    offers = await db.offers.find({}, {"_id": 0}).to_list(100)
+    return offers
+
+@api_router.post("/offers", response_model=Offer)
+async def create_offer(offer: OfferCreate):
+    offer_dict = offer.model_dump()
+    offer_obj = Offer(**offer_dict)
+    
+    doc = offer_obj.model_dump()
+    await db.offers.insert_one(doc)
+    return offer_obj
+
+@api_router.delete("/offers/{offer_id}")
+async def delete_offer(offer_id: str):
+    result = await db.offers.delete_one({"id": offer_id})
+    if result.deleted_count == 0:
+        raise HTTPException(status_code=404, detail="Offer not found")
+    return {"status": "success"}
+
 app.include_router(api_router)
 
 app.add_middleware(
