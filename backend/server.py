@@ -211,6 +211,8 @@ async def update_menu_item(item_id: str, update_data: Dict[str, Any]):
 
 @api_router.post("/orders", response_model=Order)
 async def create_order(order_data: OrderCreate):
+    from pymongo import UpdateOne
+    
     last_order = await db.orders.find_one(sort=[("order_number", -1)])
     order_number = (last_order["order_number"] + 1) if last_order else 1
     
@@ -220,11 +222,17 @@ async def create_order(order_data: OrderCreate):
     order_dict["timestamp"] = datetime.now(timezone.utc).isoformat()
     order_dict["status"] = "completed"
     
-    for item in order_data.items:
-        await db.menu_items.update_one(
+    # Bulk update inventory for better performance
+    bulk_operations = [
+        UpdateOne(
             {"id": item.item_id},
             {"$inc": {"stock": -item.quantity}}
         )
+        for item in order_data.items
+    ]
+    
+    if bulk_operations:
+        await db.menu_items.bulk_write(bulk_operations)
     
     await db.orders.insert_one(order_dict)
     
