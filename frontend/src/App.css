@@ -1,34 +1,218 @@
-.App-logo {
-    height: 40vmin;
-    pointer-events: none;
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Bebas+Neue&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-    .App-logo {
-        animation: App-logo-spin infinite 20s linear;
-    }
+body {
+  font-family: 'Manrope', sans-serif;
+  background: #0f172a;
+  color: #f8fafc;
+  overflow-x: hidden;
 }
 
-.App-header {
-    background-color: #0f0f10;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-size: calc(10px + 2vmin);
-    color: white;
+.font-primary {
+  font-family: 'Manrope', sans-serif;
 }
 
-.App-link {
-    color: #61dafb;
+.font-secondary {
+  font-family: 'Bebas Neue', cursive;
 }
 
-@keyframes App-logo-spin {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
-    }
+.btn-primary {
+  background: #f97316;
+  color: white;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-radius: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 0 20px rgba(249, 115, 22, 0.3);
+  transition: all 0.2s;
+}
+
+.btn-primary:hover {
+  background: #ea580c;
+  transform: translateY(-1px);
+  box-shadow: 0 0 25px rgba(249, 115, 22, 0.5);
+}
+
+.btn-primary:active {
+  transform: scale(0.95);
+}
+
+.btn-secondary {
+  background: #1e293b;
+  color: #e2e8f0;
+  font-weight: 500;
+  border-radius: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  border: 1px solid #334155;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-secondary:hover {
+  background: #334155;
+  border-color: #475569;
+}
+
+.menu-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 0.75rem;
+  background: #1e293b;
+  border: 1px solid #334155;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.menu-card:hover {
+  border-color: rgba(249, 115, 22, 0.5);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+  transform: translateY(-2px);
+}
+
+.menu-card img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+}
+
+.stat-card {
+  background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+  border: 1px solid #334155;
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.stat-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100px;
+  height: 100px;
+  background: radial-gradient(circle, rgba(249, 115, 22, 0.1) 0%, transparent 70%);
+}
+
+.sidebar-nav {
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100vh;
+  width: 5rem;
+  background: #1e293b;
+  border-right: 1px solid #334155;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1.5rem 0;
+  z-index: 50;
+}
+
+.sidebar-nav-item {
+  width: 3rem;
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0.5rem 0;
+  border-radius: 0.5rem;
+  color: #94a3b8;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.sidebar-nav-item:hover {
+  background: #334155;
+  color: #f97316;
+}
+
+.sidebar-nav-item.active {
+  background: #f97316;
+  color: white;
+}
+
+.order-summary {
+  position: fixed;
+  right: 0;
+  top: 0;
+  height: 100vh;
+  width: 24rem;
+  background: #1e293b;
+  border-left: 1px solid #334155;
+  z-index: 40;
+  overflow-y: auto;
+}
+
+.main-content {
+  margin-left: 5rem;
+  margin-right: 24rem;
+  min-height: 100vh;
+  background: #0f172a;
+  padding: 2rem;
+}
+
+.glass-effect {
+  backdrop-filter: blur(12px);
+  background: rgba(30, 41, 59, 0.8);
+}
+
+@media (max-width: 1024px) {
+  .order-summary {
+    width: 20rem;
+  }
+  .main-content {
+    margin-right: 20rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .sidebar-nav {
+    width: 100%;
+    height: auto;
+    flex-direction: row;
+    bottom: 0;
+    top: auto;
+    border-right: none;
+    border-top: 1px solid #334155;
+  }
+  
+  .order-summary {
+    position: relative;
+    width: 100%;
+    height: auto;
+    border-left: none;
+    border-top: 1px solid #334155;
+  }
+  
+  .main-content {
+    margin-left: 0;
+    margin-right: 0;
+    margin-bottom: 5rem;
+  }
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0f172a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #334155;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #475569;
 }
