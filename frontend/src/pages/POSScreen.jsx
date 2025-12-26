@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
-import { ShoppingCart, Pizza, UtensilsCrossed, Coffee, Droplets, Percent, Home, Package, TrendingUp, History, X, Plus, Minus, CreditCard, Banknote } from 'lucide-react';
+import { ShoppingCart, Pizza, UtensilsCrossed, Coffee, Droplets, Percent, Home, Package, TrendingUp, History, X, Plus, Minus, CreditCard, Banknote, Printer } from 'lucide-react';
 import { toast } from 'sonner';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -11,6 +11,8 @@ import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Label } from '@/components/ui/label';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import Sidebar from '@/components/Sidebar';
+import PrintReceipt from '@/components/PrintReceipt';
+import { useReactToPrint } from 'react-to-print';
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const API = `${BACKEND_URL}/api`;
@@ -33,6 +35,8 @@ const POSScreen = () => {
   const [tableToken, setTableToken] = useState('');
   const [paymentType, setPaymentType] = useState('cash');
   const [loading, setLoading] = useState(false);
+  const [lastOrder, setLastOrder] = useState(null);
+  const printRef = useRef();
 
   useEffect(() => {
     fetchMenu();
@@ -55,6 +59,10 @@ const POSScreen = () => {
     { id: 'sides', name: 'Sides', icon: UtensilsCrossed },
     { id: 'dips', name: 'Dips', icon: Droplets },
     { id: 'drinks', name: 'Drinks', icon: Coffee },
+    { id: 'slice-combos', name: 'Slice Combos', icon: Percent },
+    { id: 'pocket-combos', name: 'Pocket Combos', icon: Percent },
+    { id: 'pizza-family-combos', name: 'Pizza Family', icon: Percent },
+    { id: 'pocket-family-combos', name: 'Pocket Family', icon: Percent },
   ];
 
   const filteredItems = selectedCategory === 'all'
@@ -100,6 +108,14 @@ const POSScreen = () => {
   const calculateProfit = () => {
     return cart.reduce((sum, item) => sum + ((item.price - item.cogs) * item.quantity), 0);
   };
+
+  const handlePrint = useReactToPrint({
+    content: () => printRef.current,
+    documentTitle: `Order-${lastOrder?.order_number}`,
+    onAfterPrint: () => {
+      toast.success('Receipt printed successfully!');
+    },
+  });
 
   const handleCheckout = async () => {
     if (cart.length === 0) {
@@ -165,9 +181,16 @@ const POSScreen = () => {
         payment_id: paymentId
       };
 
-      await axios.post(`${API}/orders`, orderData);
+      const response = await axios.post(`${API}/orders`, orderData);
       
+      setLastOrder(response.data);
       toast.success('Order placed successfully!');
+      
+      // Auto print receipt after 500ms
+      setTimeout(() => {
+        handlePrint();
+      }, 500);
+      
       setCart([]);
       setTableToken('');
       setLoading(false);
@@ -198,7 +221,7 @@ const POSScreen = () => {
                   <TabsTrigger
                     key={cat.id}
                     value={cat.id}
-                    className="data-[state=active]:bg-orange-500 data-[state=active]:text-white"
+                    className="data-[state=active]:bg-orange-500 data-[state=active]:text-white text-xs"
                     data-testid={`category-tab-${cat.id}`}
                   >
                     <Icon className="w-4 h-4 mr-2" />
@@ -222,6 +245,9 @@ const POSScreen = () => {
                 )}
                 <div className="p-4">
                   <h3 className="font-medium text-slate-100 mb-1 text-sm">{item.name}</h3>
+                  {item.description && (
+                    <p className="text-xs text-slate-400 mb-2">{item.description}</p>
+                  )}
                   <div className="flex items-center justify-between">
                     <span className="font-secondary text-2xl text-orange-500">₹{item.price}</span>
                     {item.stock < 10 && (
@@ -376,8 +402,29 @@ const POSScreen = () => {
           >
             {loading ? 'Processing...' : 'Complete Order'}
           </Button>
+
+          {lastOrder && (
+            <Button
+              variant="outline"
+              className="w-full h-12 border-orange-500 text-orange-500 hover:bg-orange-500 hover:text-white"
+              onClick={handlePrint}
+              data-testid="reprint-button"
+            >
+              <Printer className="w-4 h-4 mr-2" />
+              Reprint Last Receipt
+            </Button>
+          )}
         </div>
       </aside>
+
+      {/* Hidden Print Component */}
+      {lastOrder && (
+        <PrintReceipt
+          ref={printRef}
+          orderData={lastOrder}
+          orderNumber={lastOrder.order_number}
+        />
+      )}
     </div>
   );
 };
