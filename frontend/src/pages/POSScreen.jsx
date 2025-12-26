@@ -438,9 +438,9 @@ const POSScreen = () => {
 
       {/* Table Selection Dialog */}
       <Dialog open={showTableDialog} onOpenChange={setShowTableDialog}>
-        <DialogContent className=\"bg-slate-900 border-slate-800 max-w-2xl\">
+        <DialogContent className="bg-slate-900 border-slate-800 max-w-2xl">
           <DialogHeader>
-            <DialogTitle className=\"font-secondary text-3xl text-orange-500 uppercase\">
+            <DialogTitle className="font-secondary text-3xl text-orange-500 uppercase">
               Select Table or Parcel
             </DialogTitle>
           </DialogHeader>
