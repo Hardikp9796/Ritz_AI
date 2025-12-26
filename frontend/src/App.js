@@ -16,6 +16,7 @@ function App() {
           <Route path="/orders" element={<OrderHistory />} />
           <Route path="/inventory" element={<Inventory />} />
           <Route path="/analytics" element={<Analytics />} />
+          <Route path="/settings" element={<Settings />} />
         </Routes>
       </BrowserRouter>
       <Toaster position="top-right" />
