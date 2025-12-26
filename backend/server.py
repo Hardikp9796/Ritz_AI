@@ -91,7 +91,6 @@ class AnalyticsResponse(BaseModel):
     digital_sales: float
 
 # Initialize menu data
-@api_router.on_event("startup")
 async def initialize_menu():
     count = await db.menu_items.count_documents({})
     if count == 0:
