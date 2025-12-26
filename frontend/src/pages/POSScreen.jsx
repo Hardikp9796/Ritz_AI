@@ -435,6 +435,21 @@ const POSScreen = () => {
           orderNumber={lastOrder.order_number}
         />
       )}
+
+      {/* Table Selection Dialog */}
+      <Dialog open={showTableDialog} onOpenChange={setShowTableDialog}>
+        <DialogContent className=\"bg-slate-900 border-slate-800 max-w-2xl\">
+          <DialogHeader>
+            <DialogTitle className=\"font-secondary text-3xl text-orange-500 uppercase\">
+              Select Table or Parcel
+            </DialogTitle>
+          </DialogHeader>
+          <TableSelection 
+            onSelectTable={handleTableSelect}
+            currentOrders={currentOrders}
+          />
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };
