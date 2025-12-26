@@ -1,0 +1,1430 @@
+{
+  "summary": {
+    "tests_run": 13,
+    "tests_passed": 12,
+    "success_rate": 92.3076923076923
+  },
+  "test_results": [
+    {
+      "test_name": "Root API",
+      "endpoint": "",
+      "method": "GET",
+      "expected_status": 200,
+      "actual_status": 200,
+      "success": true,
+      "response_data": {
+        "message": "POCKETO POS API"
+      },
+      "error": null
+    },
+    {
+      "test_name": "Get Menu",
+      "endpoint": "menu",
+      "method": "GET",
+      "expected_status": 200,
+      "actual_status": 200,
+      "success": true,
+      "response_data": [
+        {
+          "id": "pizza-margherita",
+          "name": "Margherita",
+          "category": "18-inch-pizza",
+          "price": 699.0,
+          "cogs": 260.0,
+          "stock": 50,
+          "image": "https://images.unsplash.com/photo-1692737580547-b45bb4a02356?w=400",
+          "flavours": null,
+          "description": null
+        },
+        {
+          "id": "pizza-periperi",
+          "name": "Peri Peri Cheese",
+          "category": "18-inch-pizza",
+          "price": 699.0,
+          "cogs": 260.0,
+          "stock": 50,
+          "image": "https://images.unsplash.com/photo-1564271822403-0e2f9f11b16e?w=400",
+          "flavours": null,
+          "description": null
+        },
+        {
+          "id": "pizza-desi",
+          "name": "Desi Masala Veg",
+          "category": "18-inch-pizza",
+          "price": 699.0,
+          "cogs": 260.0,
+          "stock": 50,
+          "image": "https://images.unsplash.com/photo-1692737580547-b45bb4a02356?w=400",
+          "flavours": null,
+          "description": null
+        },
+        {
+          "id": "pizza-paneer-tikka",
+          "name": "Paneer Tikka Masala",
+          "category": "18-inch-pizza",
+          "price": 849.0,
+          "cogs": 290.0,
+          "stock": 50,
+          "image": "https://images.unsplash.com/photo-1564271822403-0e2f9f11b16e?w=400",
+          "flavours": null,
+          "description": null
+        },
+        {
+          "id": "pizza-mexican",
+          "name": "Mexican Masala Veg",
+          "category": "18-inch-pizza",
+          "price": 849.0,
+          "cogs": 290.0,
+          "stock": 50,
+          "image": "https://images.unsplash.com/photo-1692737580547-b45bb4a02356?w=400",
+          "flavours": null,
+          "description": null
+        },
+        {
+          "id": "pizza-bbq",
+          "name": "Smoky BBQ Paneer",
+          "category": "18-inch-pizza",
+          "price": 849.0,
+          "cogs": 290.0,
+          "stock": 50,
+          "image": "https://images.unsplash.com/photo-1564271822403-0e2f9f11b16e?w=400",
+          "flavours": null,
+          "description": null
+        },
+        {
+          "id": "pizza-tandoori",
+          "name": "Tandoori Alfredo Paneer",
+          "category": "18-inch-pizza",
+          "price": 999.0,
+          "cogs": 330.0,
+          "stock": 50,
+          "image": "https://images.unsplash.com/photo-1692737580547-b45bb4a02356?w=400",
+          "flavours": null,
+          "description": null
+        },
+        {
+          "id": "slice-margherita",
+          "name": "Margherita Slice",
+          "category": "giant-slice",
+          "price": 149.0,
+          "cogs": 48.0,
+          "stock": 100,
+          "image": "https://images.unsplash.com/photo-1564271822403-0e2f9f11b16e?w=400",
+          "flavours": null,
+          "description": null
+        },
+        {
+          "id": "slice-paneer-tikka",
+          "name": "Paneer Tikka Slice",
+          "category": "giant-slice",
+          "price": 179.0,
+          "cogs": 48.0,
+          "stock": 100,
+          "image": "https://images.unsplash.com/photo-1692737580547-b45bb4a02356?w=400",
+          "flavours": null,
+          "description": null
+        },
+        {
+          "id": "slice-tandoori",
+          "name": "Tandoori Alfredo Slice",
+          "category": "giant-slice",
+          "price": 199.0,
+          "cogs": 55.0,
+          "stock": 100,
+          "image": "https://images.unsplash.com/photo-1564271822403-0e2f9f11b16e?w=400",
+          "flavours": null,
+          "description": null
+        },
+        {
+          "id": "pocket-margherita",
+          "name": "Margherita Pocket",
+          "category": "pocket-pizza",
+          "price": 149.0,
+          "cogs": 45.0,
+          "stock": 100,
+          "image": "https://images.unsplash.com/photo-1692737580547-b45bb4a02356?w=400",
+          "flavours": null,
+          "description": null
+        },
+        {
+          "id": "pocket-periperi",
+          "name": "Peri Peri Cheese Pocket",
+          "category": "pocket-pizza",
+          "price": 159.0,
+          "cogs": 48.0,
+          "stock": 100,
+          "image": "https://images.unsplash.com/photo-1564271822403-0e2f9f11b16e?w=400",
+          "flavours": null,
+          "description": null
+        },
+        {
+          "id": "pocket-paneer-tikka",
+          "name": "Paneer Tikka Masala Pocket",
+          "category": "pocket-pizza",
+          "price": 179.0,
+          "cogs": 58.0,
+          "stock": 100,
+          "image": "https://images.unsplash.com/photo-1692737580547-b45bb4a02356?w=400",
+          "flavours": null,
+          "description": null
+        },
+        {
+          "id": "pocket-house-special",
+          "name": "House Special Pocket",
+          "category": "pocket-pizza",
+          "price": 189.0,
+          "cogs": 55.0,
+          "stock": 100,
+          "image": "https://images.unsplash.com/photo-1564271822403-0e2f9f11b16e?w=400",
+          "flavours": null,
+          "description": null
+        },
+        {
+          "id": "pocket-tandoori",
+          "name": "Tandoori Alfredo Pocket",
+          "category": "pocket-pizza",
+          "price": 199.0,
+          "cogs": 65.0,
+          "stock": 100,
+          "image": "https://images.unsplash.com/photo-1692737580547-b45bb4a02356?w=400",
+          "flavours": null,
+          "description": null
+        },
+        {
+          "id": "side-garlic-bread",
+          "name": "Cheese Garlic Bread",
+          "category": "sides",
+          "price": 129.0,
+          "cogs": 42.0,
+          "stock": 100,
+          "image": "https://images.unsplash.com/photo-1569409611632-b87901f4c74a?w=400",
+          "flavours": null,
+          "description": null
+        },
+        {
+          "id": "side-fries",
+          "name": "Classic French Fries",
+          "category": "sides",
+          "price": 99.0,
+          "cogs": 30.0,
+          "stock": 100,
+          "image": "https://images.unsplash.com/photo-1569409611632-b87901f4c74a?w=400",
+          "flavours": null,
+          "description": null
+        },
+        {
+          "id": "side-curly-fries",
+          "name": "Curly Masala Fries",
+          "category": "sides",
+          "price": 129.0,
+          "cogs": 38.0,
+          "stock": 100,
+          "image": "https://images.unsplash.com/photo-1569409611632-b87901f4c74a?w=400",
+          "flavours": null,
+          "description": null
+        },
+        {
+          "id": "side-wedges",
+          "name": "Potato Wedges",
+          "category": "sides",
+          "price": 119.0,
+          "cogs": 35.0,
+          "stock": 100,
+          "image": "https://images.unsplash.com/photo-1569409611632-b87901f4c74a?w=400",
+          "flavours": null,
+          "description": null
+        },
+        {
+          "id": "dip-tandoori",
+          "name": "Tandoori Mayo",
+          "category": "dips",
+          "price": 20.0,
+          "cogs": 6.0,
+          "stock": 200,
+          "image": null,
+          "flavours": null,
+          "description": null
+        },
+        {
+          "id": "dip-garlic",
+          "name": "Garlic Cheese Dip",
+          "category": "dips",
+          "price": 25.0,
+          "cogs": 8.0,
+          "stock": 200,
+          "image": null,
+          "flavours": null,
+          "description": null
+        },
+        {
+          "id": "dip-periperi",
+          "name": "Peri Peri Dip",
+          "category": "dips",
+          "price": 20.0,
+          "cogs": 5.0,
+          "stock": 200,
+          "image": null,
+          "flavours": null,
+          "description": null
+        },
+        {
+          "id": "dip-bbq",
+          "name": "Smoky BBQ Dip",
+          "category": "dips",
+          "price": 25.0,
+          "cogs": 7.0,
+          "stock": 200,
+          "image": null,
+          "flavours": null,
+          "description": null
+        },
+        {
+          "id": "drink-cola",
+          "name": "Cola (200ml)",
+          "category": "drinks",
+          "price": 40.0,
+          "cogs": 22.0,
+          "stock": 200,
+          "image": "https://images.pexels.com/photos/3490367/pexels-photo-3490367.jpeg?w=400",
+          "flavours": null,
+          "description": null
+        },
+        {
+          "id": "drink-orange",
+          "name": "Orange Soda (200ml)",
+          "category": "drinks",
+          "price": 40.0,
+          "cogs": 22.0,
+          "stock": 200,
+          "image": "https://images.pexels.com/photos/3490367/pexels-photo-3490367.jpeg?w=400",
+          "flavours": null,
+          "description": null
+        },
+        {
+          "id": "drink-lemon-tea",
+          "name": "Iced Tea - Lemon",
+          "category": "drinks",
+          "price": 80.0,
+          "cogs": 32.0,
+          "stock": 200,
+          "image": "https://images.pexels.com/photos/3490367/pexels-photo-3490367.jpeg?w=400",
+          "flavours": null,
+          "description": null
+        },
+        {
+          "id": "drink-peach-tea",
+          "name": "Iced Tea - Peach",
+          "category": "drinks",
+          "price": 80.0,
+          "cogs": 32.0,
+          "stock": 200,
+          "image": "https://images.pexels.com/photos/3490367/pexels-photo-3490367.jpeg?w=400",
+          "flavours": null,
+          "description": null
+        }
+      ],
+      "error": null
+    },
+    {
+      "test_name": "Get Menu",
+      "endpoint": "menu",
+      "method": "GET",
+      "expected_status": 200,
+      "actual_status": 200,
+      "success": true,
+      "response_data": [
+        {
+          "id": "pizza-margherita",
+          "name": "Margherita",
+          "category": "18-inch-pizza",
+          "price": 699.0,
+          "cogs": 260.0,
+          "stock": 50,
+          "image": "https://images.unsplash.com/photo-1692737580547-b45bb4a02356?w=400",
+          "flavours": null,
+          "description": null
+        },
+        {
+          "id": "pizza-periperi",
+          "name": "Peri Peri Cheese",
+          "category": "18-inch-pizza",
+          "price": 699.0,
+          "cogs": 260.0,
+          "stock": 50,
+          "image": "https://images.unsplash.com/photo-1564271822403-0e2f9f11b16e?w=400",
+          "flavours": null,
+          "description": null
+        },
+        {
+          "id": "pizza-desi",
+          "name": "Desi Masala Veg",
+          "category": "18-inch-pizza",
+          "price": 699.0,
+          "cogs": 260.0,
+          "stock": 50,
+          "image": "https://images.unsplash.com/photo-1692737580547-b45bb4a02356?w=400",
+          "flavours": null,
+          "description": null
+        },
+        {
+          "id": "pizza-paneer-tikka",
+          "name": "Paneer Tikka Masala",
+          "category": "18-inch-pizza",
+          "price": 849.0,
+          "cogs": 290.0,
+          "stock": 50,
+          "image": "https://images.unsplash.com/photo-1564271822403-0e2f9f11b16e?w=400",
+          "flavours": null,
+          "description": null
+        },
+        {
+          "id": "pizza-mexican",
+          "name": "Mexican Masala Veg",
+          "category": "18-inch-pizza",
+          "price": 849.0,
+          "cogs": 290.0,
+          "stock": 50,
+          "image": "https://images.unsplash.com/photo-1692737580547-b45bb4a02356?w=400",
+          "flavours": null,
+          "description": null
+        },
+        {
+          "id": "pizza-bbq",
+          "name": "Smoky BBQ Paneer",
+          "category": "18-inch-pizza",
+          "price": 849.0,
+          "cogs": 290.0,
+          "stock": 50,
+          "image": "https://images.unsplash.com/photo-1564271822403-0e2f9f11b16e?w=400",
+          "flavours": null,
+          "description": null
+        },
+        {
+          "id": "pizza-tandoori",
+          "name": "Tandoori Alfredo Paneer",
+          "category": "18-inch-pizza",
+          "price": 999.0,
+          "cogs": 330.0,
+          "stock": 50,
+          "image": "https://images.unsplash.com/photo-1692737580547-b45bb4a02356?w=400",
+          "flavours": null,
+          "description": null
+        },
+        {
+          "id": "slice-margherita",
+          "name": "Margherita Slice",
+          "category": "giant-slice",
+          "price": 149.0,
+          "cogs": 48.0,
+          "stock": 100,
+          "image": "https://images.unsplash.com/photo-1564271822403-0e2f9f11b16e?w=400",
+          "flavours": null,
+          "description": null
+        },
+        {
+          "id": "slice-paneer-tikka",
+          "name": "Paneer Tikka Slice",
+          "category": "giant-slice",
+          "price": 179.0,
+          "cogs": 48.0,
+          "stock": 100,
+          "image": "https://images.unsplash.com/photo-1692737580547-b45bb4a02356?w=400",
+          "flavours": null,
+          "description": null
+        },
+        {
+          "id": "slice-tandoori",
+          "name": "Tandoori Alfredo Slice",
+          "category": "giant-slice",
+          "price": 199.0,
+          "cogs": 55.0,
+          "stock": 100,
+          "image": "https://images.unsplash.com/photo-1564271822403-0e2f9f11b16e?w=400",
+          "flavours": null,
+          "description": null
+        },
+        {
+          "id": "pocket-margherita",
+          "name": "Margherita Pocket",
+          "category": "pocket-pizza",
+          "price": 149.0,
+          "cogs": 45.0,
+          "stock": 100,
+          "image": "https://images.unsplash.com/photo-1692737580547-b45bb4a02356?w=400",
+          "flavours": null,
+          "description": null
+        },
+        {
+          "id": "pocket-periperi",
+          "name": "Peri Peri Cheese Pocket",
+          "category": "pocket-pizza",
+          "price": 159.0,
+          "cogs": 48.0,
+          "stock": 100,
+          "image": "https://images.unsplash.com/photo-1564271822403-0e2f9f11b16e?w=400",
+          "flavours": null,
+          "description": null
+        },
+        {
+          "id": "pocket-paneer-tikka",
+          "name": "Paneer Tikka Masala Pocket",
+          "category": "pocket-pizza",
+          "price": 179.0,
+          "cogs": 58.0,
+          "stock": 100,
+          "image": "https://images.unsplash.com/photo-1692737580547-b45bb4a02356?w=400",
+          "flavours": null,
+          "description": null
+        },
+        {
+          "id": "pocket-house-special",
+          "name": "House Special Pocket",
+          "category": "pocket-pizza",
+          "price": 189.0,
+          "cogs": 55.0,
+          "stock": 100,
+          "image": "https://images.unsplash.com/photo-1564271822403-0e2f9f11b16e?w=400",
+          "flavours": null,
+          "description": null
+        },
+        {
+          "id": "pocket-tandoori",
+          "name": "Tandoori Alfredo Pocket",
+          "category": "pocket-pizza",
+          "price": 199.0,
+          "cogs": 65.0,
+          "stock": 100,
+          "image": "https://images.unsplash.com/photo-1692737580547-b45bb4a02356?w=400",
+          "flavours": null,
+          "description": null
+        },
+        {
+          "id": "side-garlic-bread",
+          "name": "Cheese Garlic Bread",
+          "category": "sides",
+          "price": 129.0,
+          "cogs": 42.0,
+          "stock": 100,
+          "image": "https://images.unsplash.com/photo-1569409611632-b87901f4c74a?w=400",
+          "flavours": null,
+          "description": null
+        },
+        {
+          "id": "side-fries",
+          "name": "Classic French Fries",
+          "category": "sides",
+          "price": 99.0,
+          "cogs": 30.0,
+          "stock": 100,
+          "image": "https://images.unsplash.com/photo-1569409611632-b87901f4c74a?w=400",
+          "flavours": null,
+          "description": null
+        },
+        {
+          "id": "side-curly-fries",
+          "name": "Curly Masala Fries",
+          "category": "sides",
+          "price": 129.0,
+          "cogs": 38.0,
+          "stock": 100,
+          "image": "https://images.unsplash.com/photo-1569409611632-b87901f4c74a?w=400",
+          "flavours": null,
+          "description": null
+        },
+        {
+          "id": "side-wedges",
+          "name": "Potato Wedges",
+          "category": "sides",
+          "price": 119.0,
+          "cogs": 35.0,
+          "stock": 100,
+          "image": "https://images.unsplash.com/photo-1569409611632-b87901f4c74a?w=400",
+          "flavours": null,
+          "description": null
+        },
+        {
+          "id": "dip-tandoori",
+          "name": "Tandoori Mayo",
+          "category": "dips",
+          "price": 20.0,
+          "cogs": 6.0,
+          "stock": 200,
+          "image": null,
+          "flavours": null,
+          "description": null
+        },
+        {
+          "id": "dip-garlic",
+          "name": "Garlic Cheese Dip",
+          "category": "dips",
+          "price": 25.0,
+          "cogs": 8.0,
+          "stock": 200,
+          "image": null,
+          "flavours": null,
+          "description": null
+        },
+        {
+          "id": "dip-periperi",
+          "name": "Peri Peri Dip",
+          "category": "dips",
+          "price": 20.0,
+          "cogs": 5.0,
+          "stock": 200,
+          "image": null,
+          "flavours": null,
+          "description": null
+        },
+        {
+          "id": "dip-bbq",
+          "name": "Smoky BBQ Dip",
+          "category": "dips",
+          "price": 25.0,
+          "cogs": 7.0,
+          "stock": 200,
+          "image": null,
+          "flavours": null,
+          "description": null
+        },
+        {
+          "id": "drink-cola",
+          "name": "Cola (200ml)",
+          "category": "drinks",
+          "price": 40.0,
+          "cogs": 22.0,
+          "stock": 200,
+          "image": "https://images.pexels.com/photos/3490367/pexels-photo-3490367.jpeg?w=400",
+          "flavours": null,
+          "description": null
+        },
+        {
+          "id": "drink-orange",
+          "name": "Orange Soda (200ml)",
+          "category": "drinks",
+          "price": 40.0,
+          "cogs": 22.0,
+          "stock": 200,
+          "image": "https://images.pexels.com/photos/3490367/pexels-photo-3490367.jpeg?w=400",
+          "flavours": null,
+          "description": null
+        },
+        {
+          "id": "drink-lemon-tea",
+          "name": "Iced Tea - Lemon",
+          "category": "drinks",
+          "price": 80.0,
+          "cogs": 32.0,
+          "stock": 200,
+          "image": "https://images.pexels.com/photos/3490367/pexels-photo-3490367.jpeg?w=400",
+          "flavours": null,
+          "description": null
+        },
+        {
+          "id": "drink-peach-tea",
+          "name": "Iced Tea - Peach",
+          "category": "drinks",
+          "price": 80.0,
+          "cogs": 32.0,
+          "stock": 200,
+          "image": "https://images.pexels.com/photos/3490367/pexels-photo-3490367.jpeg?w=400",
+          "flavours": null,
+          "description": null
+        }
+      ],
+      "error": null
+    },
+    {
+      "test_name": "Create Order",
+      "endpoint": "orders",
+      "method": "POST",
+      "expected_status": 200,
+      "actual_status": 200,
+      "success": true,
+      "response_data": {
+        "id": "order-1",
+        "order_number": 1,
+        "items": [
+          {
+            "item_id": "pizza-margherita",
+            "item_name": "Margherita",
+            "quantity": 1,
+            "price": 699.0,
+            "cogs": 260.0
+          },
+          {
+            "item_id": "pizza-periperi",
+            "item_name": "Peri Peri Cheese",
+            "quantity": 1,
+            "price": 699.0,
+            "cogs": 260.0
+          }
+        ],
+        "total": 1398.0,
+        "gross_profit": 878.0,
+        "order_type": "dine-in",
+        "table_token": "T001",
+        "payment_type": "cash",
+        "payment_id": null,
+        "status": "completed",
+        "timestamp": "2025-12-26T18:22:02.396746+00:00"
+      },
+      "error": null
+    },
+    {
+      "test_name": "Get Orders",
+      "endpoint": "orders?limit=10",
+      "method": "GET",
+      "expected_status": 200,
+      "actual_status": 200,
+      "success": true,
+      "response_data": [
+        {
+          "id": "order-1",
+          "order_number": 1,
+          "items": [
+            {
+              "item_id": "pizza-margherita",
+              "item_name": "Margherita",
+              "quantity": 1,
+              "price": 699.0,
+              "cogs": 260.0
+            },
+            {
+              "item_id": "pizza-periperi",
+              "item_name": "Peri Peri Cheese",
+              "quantity": 1,
+              "price": 699.0,
+              "cogs": 260.0
+            }
+          ],
+          "total": 1398.0,
+          "gross_profit": 878.0,
+          "order_type": "dine-in",
+          "table_token": "T001",
+          "payment_type": "cash",
+          "payment_id": null,
+          "status": "completed",
+          "timestamp": "2025-12-26T18:22:02.396746+00:00"
+        }
+      ],
+      "error": null
+    },
+    {
+      "test_name": "Get Inventory",
+      "endpoint": "inventory",
+      "method": "GET",
+      "expected_status": 200,
+      "actual_status": 200,
+      "success": true,
+      "response_data": [
+        {
+          "id": "pizza-margherita",
+          "name": "Margherita",
+          "category": "18-inch-pizza",
+          "price": 699.0,
+          "cogs": 260.0,
+          "stock": 49,
+          "image": "https://images.unsplash.com/photo-1692737580547-b45bb4a02356?w=400",
+          "flavours": null,
+          "description": null
+        },
+        {
+          "id": "pizza-periperi",
+          "name": "Peri Peri Cheese",
+          "category": "18-inch-pizza",
+          "price": 699.0,
+          "cogs": 260.0,
+          "stock": 49,
+          "image": "https://images.unsplash.com/photo-1564271822403-0e2f9f11b16e?w=400",
+          "flavours": null,
+          "description": null
+        },
+        {
+          "id": "pizza-desi",
+          "name": "Desi Masala Veg",
+          "category": "18-inch-pizza",
+          "price": 699.0,
+          "cogs": 260.0,
+          "stock": 50,
+          "image": "https://images.unsplash.com/photo-1692737580547-b45bb4a02356?w=400",
+          "flavours": null,
+          "description": null
+        },
+        {
+          "id": "pizza-paneer-tikka",
+          "name": "Paneer Tikka Masala",
+          "category": "18-inch-pizza",
+          "price": 849.0,
+          "cogs": 290.0,
+          "stock": 50,
+          "image": "https://images.unsplash.com/photo-1564271822403-0e2f9f11b16e?w=400",
+          "flavours": null,
+          "description": null
+        },
+        {
+          "id": "pizza-mexican",
+          "name": "Mexican Masala Veg",
+          "category": "18-inch-pizza",
+          "price": 849.0,
+          "cogs": 290.0,
+          "stock": 50,
+          "image": "https://images.unsplash.com/photo-1692737580547-b45bb4a02356?w=400",
+          "flavours": null,
+          "description": null
+        },
+        {
+          "id": "pizza-bbq",
+          "name": "Smoky BBQ Paneer",
+          "category": "18-inch-pizza",
+          "price": 849.0,
+          "cogs": 290.0,
+          "stock": 50,
+          "image": "https://images.unsplash.com/photo-1564271822403-0e2f9f11b16e?w=400",
+          "flavours": null,
+          "description": null
+        },
+        {
+          "id": "pizza-tandoori",
+          "name": "Tandoori Alfredo Paneer",
+          "category": "18-inch-pizza",
+          "price": 999.0,
+          "cogs": 330.0,
+          "stock": 50,
+          "image": "https://images.unsplash.com/photo-1692737580547-b45bb4a02356?w=400",
+          "flavours": null,
+          "description": null
+        },
+        {
+          "id": "slice-margherita",
+          "name": "Margherita Slice",
+          "category": "giant-slice",
+          "price": 149.0,
+          "cogs": 48.0,
+          "stock": 100,
+          "image": "https://images.unsplash.com/photo-1564271822403-0e2f9f11b16e?w=400",
+          "flavours": null,
+          "description": null
+        },
+        {
+          "id": "slice-paneer-tikka",
+          "name": "Paneer Tikka Slice",
+          "category": "giant-slice",
+          "price": 179.0,
+          "cogs": 48.0,
+          "stock": 100,
+          "image": "https://images.unsplash.com/photo-1692737580547-b45bb4a02356?w=400",
+          "flavours": null,
+          "description": null
+        },
+        {
+          "id": "slice-tandoori",
+          "name": "Tandoori Alfredo Slice",
+          "category": "giant-slice",
+          "price": 199.0,
+          "cogs": 55.0,
+          "stock": 100,
+          "image": "https://images.unsplash.com/photo-1564271822403-0e2f9f11b16e?w=400",
+          "flavours": null,
+          "description": null
+        },
+        {
+          "id": "pocket-margherita",
+          "name": "Margherita Pocket",
+          "category": "pocket-pizza",
+          "price": 149.0,
+          "cogs": 45.0,
+          "stock": 100,
+          "image": "https://images.unsplash.com/photo-1692737580547-b45bb4a02356?w=400",
+          "flavours": null,
+          "description": null
+        },
+        {
+          "id": "pocket-periperi",
+          "name": "Peri Peri Cheese Pocket",
+          "category": "pocket-pizza",
+          "price": 159.0,
+          "cogs": 48.0,
+          "stock": 100,
+          "image": "https://images.unsplash.com/photo-1564271822403-0e2f9f11b16e?w=400",
+          "flavours": null,
+          "description": null
+        },
+        {
+          "id": "pocket-paneer-tikka",
+          "name": "Paneer Tikka Masala Pocket",
+          "category": "pocket-pizza",
+          "price": 179.0,
+          "cogs": 58.0,
+          "stock": 100,
+          "image": "https://images.unsplash.com/photo-1692737580547-b45bb4a02356?w=400",
+          "flavours": null,
+          "description": null
+        },
+        {
+          "id": "pocket-house-special",
+          "name": "House Special Pocket",
+          "category": "pocket-pizza",
+          "price": 189.0,
+          "cogs": 55.0,
+          "stock": 100,
+          "image": "https://images.unsplash.com/photo-1564271822403-0e2f9f11b16e?w=400",
+          "flavours": null,
+          "description": null
+        },
+        {
+          "id": "pocket-tandoori",
+          "name": "Tandoori Alfredo Pocket",
+          "category": "pocket-pizza",
+          "price": 199.0,
+          "cogs": 65.0,
+          "stock": 100,
+          "image": "https://images.unsplash.com/photo-1692737580547-b45bb4a02356?w=400",
+          "flavours": null,
+          "description": null
+        },
+        {
+          "id": "side-garlic-bread",
+          "name": "Cheese Garlic Bread",
+          "category": "sides",
+          "price": 129.0,
+          "cogs": 42.0,
+          "stock": 100,
+          "image": "https://images.unsplash.com/photo-1569409611632-b87901f4c74a?w=400",
+          "flavours": null,
+          "description": null
+        },
+        {
+          "id": "side-fries",
+          "name": "Classic French Fries",
+          "category": "sides",
+          "price": 99.0,
+          "cogs": 30.0,
+          "stock": 100,
+          "image": "https://images.unsplash.com/photo-1569409611632-b87901f4c74a?w=400",
+          "flavours": null,
+          "description": null
+        },
+        {
+          "id": "side-curly-fries",
+          "name": "Curly Masala Fries",
+          "category": "sides",
+          "price": 129.0,
+          "cogs": 38.0,
+          "stock": 100,
+          "image": "https://images.unsplash.com/photo-1569409611632-b87901f4c74a?w=400",
+          "flavours": null,
+          "description": null
+        },
+        {
+          "id": "side-wedges",
+          "name": "Potato Wedges",
+          "category": "sides",
+          "price": 119.0,
+          "cogs": 35.0,
+          "stock": 100,
+          "image": "https://images.unsplash.com/photo-1569409611632-b87901f4c74a?w=400",
+          "flavours": null,
+          "description": null
+        },
+        {
+          "id": "dip-tandoori",
+          "name": "Tandoori Mayo",
+          "category": "dips",
+          "price": 20.0,
+          "cogs": 6.0,
+          "stock": 200,
+          "image": null,
+          "flavours": null,
+          "description": null
+        },
+        {
+          "id": "dip-garlic",
+          "name": "Garlic Cheese Dip",
+          "category": "dips",
+          "price": 25.0,
+          "cogs": 8.0,
+          "stock": 200,
+          "image": null,
+          "flavours": null,
+          "description": null
+        },
+        {
+          "id": "dip-periperi",
+          "name": "Peri Peri Dip",
+          "category": "dips",
+          "price": 20.0,
+          "cogs": 5.0,
+          "stock": 200,
+          "image": null,
+          "flavours": null,
+          "description": null
+        },
+        {
+          "id": "dip-bbq",
+          "name": "Smoky BBQ Dip",
+          "category": "dips",
+          "price": 25.0,
+          "cogs": 7.0,
+          "stock": 200,
+          "image": null,
+          "flavours": null,
+          "description": null
+        },
+        {
+          "id": "drink-cola",
+          "name": "Cola (200ml)",
+          "category": "drinks",
+          "price": 40.0,
+          "cogs": 22.0,
+          "stock": 200,
+          "image": "https://images.pexels.com/photos/3490367/pexels-photo-3490367.jpeg?w=400",
+          "flavours": null,
+          "description": null
+        },
+        {
+          "id": "drink-orange",
+          "name": "Orange Soda (200ml)",
+          "category": "drinks",
+          "price": 40.0,
+          "cogs": 22.0,
+          "stock": 200,
+          "image": "https://images.pexels.com/photos/3490367/pexels-photo-3490367.jpeg?w=400",
+          "flavours": null,
+          "description": null
+        },
+        {
+          "id": "drink-lemon-tea",
+          "name": "Iced Tea - Lemon",
+          "category": "drinks",
+          "price": 80.0,
+          "cogs": 32.0,
+          "stock": 200,
+          "image": "https://images.pexels.com/photos/3490367/pexels-photo-3490367.jpeg?w=400",
+          "flavours": null,
+          "description": null
+        },
+        {
+          "id": "drink-peach-tea",
+          "name": "Iced Tea - Peach",
+          "category": "drinks",
+          "price": 80.0,
+          "cogs": 32.0,
+          "stock": 200,
+          "image": "https://images.pexels.com/photos/3490367/pexels-photo-3490367.jpeg?w=400",
+          "flavours": null,
+          "description": null
+        }
+      ],
+      "error": null
+    },
+    {
+      "test_name": "Get Inventory",
+      "endpoint": "inventory",
+      "method": "GET",
+      "expected_status": 200,
+      "actual_status": 200,
+      "success": true,
+      "response_data": [
+        {
+          "id": "pizza-margherita",
+          "name": "Margherita",
+          "category": "18-inch-pizza",
+          "price": 699.0,
+          "cogs": 260.0,
+          "stock": 49,
+          "image": "https://images.unsplash.com/photo-1692737580547-b45bb4a02356?w=400",
+          "flavours": null,
+          "description": null
+        },
+        {
+          "id": "pizza-periperi",
+          "name": "Peri Peri Cheese",
+          "category": "18-inch-pizza",
+          "price": 699.0,
+          "cogs": 260.0,
+          "stock": 49,
+          "image": "https://images.unsplash.com/photo-1564271822403-0e2f9f11b16e?w=400",
+          "flavours": null,
+          "description": null
+        },
+        {
+          "id": "pizza-desi",
+          "name": "Desi Masala Veg",
+          "category": "18-inch-pizza",
+          "price": 699.0,
+          "cogs": 260.0,
+          "stock": 50,
+          "image": "https://images.unsplash.com/photo-1692737580547-b45bb4a02356?w=400",
+          "flavours": null,
+          "description": null
+        },
+        {
+          "id": "pizza-paneer-tikka",
+          "name": "Paneer Tikka Masala",
+          "category": "18-inch-pizza",
+          "price": 849.0,
+          "cogs": 290.0,
+          "stock": 50,
+          "image": "https://images.unsplash.com/photo-1564271822403-0e2f9f11b16e?w=400",
+          "flavours": null,
+          "description": null
+        },
+        {
+          "id": "pizza-mexican",
+          "name": "Mexican Masala Veg",
+          "category": "18-inch-pizza",
+          "price": 849.0,
+          "cogs": 290.0,
+          "stock": 50,
+          "image": "https://images.unsplash.com/photo-1692737580547-b45bb4a02356?w=400",
+          "flavours": null,
+          "description": null
+        },
+        {
+          "id": "pizza-bbq",
+          "name": "Smoky BBQ Paneer",
+          "category": "18-inch-pizza",
+          "price": 849.0,
+          "cogs": 290.0,
+          "stock": 50,
+          "image": "https://images.unsplash.com/photo-1564271822403-0e2f9f11b16e?w=400",
+          "flavours": null,
+          "description": null
+        },
+        {
+          "id": "pizza-tandoori",
+          "name": "Tandoori Alfredo Paneer",
+          "category": "18-inch-pizza",
+          "price": 999.0,
+          "cogs": 330.0,
+          "stock": 50,
+          "image": "https://images.unsplash.com/photo-1692737580547-b45bb4a02356?w=400",
+          "flavours": null,
+          "description": null
+        },
+        {
+          "id": "slice-margherita",
+          "name": "Margherita Slice",
+          "category": "giant-slice",
+          "price": 149.0,
+          "cogs": 48.0,
+          "stock": 100,
+          "image": "https://images.unsplash.com/photo-1564271822403-0e2f9f11b16e?w=400",
+          "flavours": null,
+          "description": null
+        },
+        {
+          "id": "slice-paneer-tikka",
+          "name": "Paneer Tikka Slice",
+          "category": "giant-slice",
+          "price": 179.0,
+          "cogs": 48.0,
+          "stock": 100,
+          "image": "https://images.unsplash.com/photo-1692737580547-b45bb4a02356?w=400",
+          "flavours": null,
+          "description": null
+        },
+        {
+          "id": "slice-tandoori",
+          "name": "Tandoori Alfredo Slice",
+          "category": "giant-slice",
+          "price": 199.0,
+          "cogs": 55.0,
+          "stock": 100,
+          "image": "https://images.unsplash.com/photo-1564271822403-0e2f9f11b16e?w=400",
+          "flavours": null,
+          "description": null
+        },
+        {
+          "id": "pocket-margherita",
+          "name": "Margherita Pocket",
+          "category": "pocket-pizza",
+          "price": 149.0,
+          "cogs": 45.0,
+          "stock": 100,
+          "image": "https://images.unsplash.com/photo-1692737580547-b45bb4a02356?w=400",
+          "flavours": null,
+          "description": null
+        },
+        {
+          "id": "pocket-periperi",
+          "name": "Peri Peri Cheese Pocket",
+          "category": "pocket-pizza",
+          "price": 159.0,
+          "cogs": 48.0,
+          "stock": 100,
+          "image": "https://images.unsplash.com/photo-1564271822403-0e2f9f11b16e?w=400",
+          "flavours": null,
+          "description": null
+        },
+        {
+          "id": "pocket-paneer-tikka",
+          "name": "Paneer Tikka Masala Pocket",
+          "category": "pocket-pizza",
+          "price": 179.0,
+          "cogs": 58.0,
+          "stock": 100,
+          "image": "https://images.unsplash.com/photo-1692737580547-b45bb4a02356?w=400",
+          "flavours": null,
+          "description": null
+        },
+        {
+          "id": "pocket-house-special",
+          "name": "House Special Pocket",
+          "category": "pocket-pizza",
+          "price": 189.0,
+          "cogs": 55.0,
+          "stock": 100,
+          "image": "https://images.unsplash.com/photo-1564271822403-0e2f9f11b16e?w=400",
+          "flavours": null,
+          "description": null
+        },
+        {
+          "id": "pocket-tandoori",
+          "name": "Tandoori Alfredo Pocket",
+          "category": "pocket-pizza",
+          "price": 199.0,
+          "cogs": 65.0,
+          "stock": 100,
+          "image": "https://images.unsplash.com/photo-1692737580547-b45bb4a02356?w=400",
+          "flavours": null,
+          "description": null
+        },
+        {
+          "id": "side-garlic-bread",
+          "name": "Cheese Garlic Bread",
+          "category": "sides",
+          "price": 129.0,
+          "cogs": 42.0,
+          "stock": 100,
+          "image": "https://images.unsplash.com/photo-1569409611632-b87901f4c74a?w=400",
+          "flavours": null,
+          "description": null
+        },
+        {
+          "id": "side-fries",
+          "name": "Classic French Fries",
+          "category": "sides",
+          "price": 99.0,
+          "cogs": 30.0,
+          "stock": 100,
+          "image": "https://images.unsplash.com/photo-1569409611632-b87901f4c74a?w=400",
+          "flavours": null,
+          "description": null
+        },
+        {
+          "id": "side-curly-fries",
+          "name": "Curly Masala Fries",
+          "category": "sides",
+          "price": 129.0,
+          "cogs": 38.0,
+          "stock": 100,
+          "image": "https://images.unsplash.com/photo-1569409611632-b87901f4c74a?w=400",
+          "flavours": null,
+          "description": null
+        },
+        {
+          "id": "side-wedges",
+          "name": "Potato Wedges",
+          "category": "sides",
+          "price": 119.0,
+          "cogs": 35.0,
+          "stock": 100,
+          "image": "https://images.unsplash.com/photo-1569409611632-b87901f4c74a?w=400",
+          "flavours": null,
+          "description": null
+        },
+        {
+          "id": "dip-tandoori",
+          "name": "Tandoori Mayo",
+          "category": "dips",
+          "price": 20.0,
+          "cogs": 6.0,
+          "stock": 200,
+          "image": null,
+          "flavours": null,
+          "description": null
+        },
+        {
+          "id": "dip-garlic",
+          "name": "Garlic Cheese Dip",
+          "category": "dips",
+          "price": 25.0,
+          "cogs": 8.0,
+          "stock": 200,
+          "image": null,
+          "flavours": null,
+          "description": null
+        },
+        {
+          "id": "dip-periperi",
+          "name": "Peri Peri Dip",
+          "category": "dips",
+          "price": 20.0,
+          "cogs": 5.0,
+          "stock": 200,
+          "image": null,
+          "flavours": null,
+          "description": null
+        },
+        {
+          "id": "dip-bbq",
+          "name": "Smoky BBQ Dip",
+          "category": "dips",
+          "price": 25.0,
+          "cogs": 7.0,
+          "stock": 200,
+          "image": null,
+          "flavours": null,
+          "description": null
+        },
+        {
+          "id": "drink-cola",
+          "name": "Cola (200ml)",
+          "category": "drinks",
+          "price": 40.0,
+          "cogs": 22.0,
+          "stock": 200,
+          "image": "https://images.pexels.com/photos/3490367/pexels-photo-3490367.jpeg?w=400",
+          "flavours": null,
+          "description": null
+        },
+        {
+          "id": "drink-orange",
+          "name": "Orange Soda (200ml)",
+          "category": "drinks",
+          "price": 40.0,
+          "cogs": 22.0,
+          "stock": 200,
+          "image": "https://images.pexels.com/photos/3490367/pexels-photo-3490367.jpeg?w=400",
+          "flavours": null,
+          "description": null
+        },
+        {
+          "id": "drink-lemon-tea",
+          "name": "Iced Tea - Lemon",
+          "category": "drinks",
+          "price": 80.0,
+          "cogs": 32.0,
+          "stock": 200,
+          "image": "https://images.pexels.com/photos/3490367/pexels-photo-3490367.jpeg?w=400",
+          "flavours": null,
+          "description": null
+        },
+        {
+          "id": "drink-peach-tea",
+          "name": "Iced Tea - Peach",
+          "category": "drinks",
+          "price": 80.0,
+          "cogs": 32.0,
+          "stock": 200,
+          "image": "https://images.pexels.com/photos/3490367/pexels-photo-3490367.jpeg?w=400",
+          "flavours": null,
+          "description": null
+        }
+      ],
+      "error": null
+    },
+    {
+      "test_name": "Update Inventory",
+      "endpoint": "inventory/pizza-margherita",
+      "method": "PUT",
+      "expected_status": 200,
+      "actual_status": 200,
+      "success": true,
+      "response_data": {
+        "status": "success"
+      },
+      "error": null
+    },
+    {
+      "test_name": "Analytics Sales (today)",
+      "endpoint": "analytics/sales?period=today",
+      "method": "GET",
+      "expected_status": 200,
+      "actual_status": 200,
+      "success": true,
+      "response_data": {
+        "total_sales": 1398.0,
+        "total_orders": 1,
+        "total_profit": 878.0,
+        "avg_order_value": 1398.0,
+        "cash_sales": 1398.0,
+        "digital_sales": 0
+      },
+      "error": null
+    },
+    {
+      "test_name": "Analytics Sales (week)",
+      "endpoint": "analytics/sales?period=week",
+      "method": "GET",
+      "expected_status": 200,
+      "actual_status": 200,
+      "success": true,
+      "response_data": {
+        "total_sales": 1398.0,
+        "total_orders": 1,
+        "total_profit": 878.0,
+        "avg_order_value": 1398.0,
+        "cash_sales": 1398.0,
+        "digital_sales": 0
+      },
+      "error": null
+    },
+    {
+      "test_name": "Analytics Sales (month)",
+      "endpoint": "analytics/sales?period=month",
+      "method": "GET",
+      "expected_status": 200,
+      "actual_status": 200,
+      "success": true,
+      "response_data": {
+        "total_sales": 1398.0,
+        "total_orders": 1,
+        "total_profit": 878.0,
+        "avg_order_value": 1398.0,
+        "cash_sales": 1398.0,
+        "digital_sales": 0
+      },
+      "error": null
+    },
+    {
+      "test_name": "Analytics Best Sellers",
+      "endpoint": "analytics/best-sellers",
+      "method": "GET",
+      "expected_status": 200,
+      "actual_status": 200,
+      "success": true,
+      "response_data": [
+        {
+          "item_id": "pizza-margherita",
+          "item_name": "Margherita",
+          "quantity_sold": 1,
+          "revenue": 699.0,
+          "profit": 439.0
+        },
+        {
+          "item_id": "pizza-periperi",
+          "item_name": "Peri Peri Cheese",
+          "quantity_sold": 1,
+          "revenue": 699.0,
+          "profit": 439.0
+        }
+      ],
+      "error": null
+    },
+    {
+      "test_name": "Create Razorpay Order",
+      "endpoint": "payment/create-order",
+      "method": "POST",
+      "expected_status": 200,
+      "actual_status": 400,
+      "success": false,
+      "response_data": null,
+      "error": {
+        "detail": "Razorpay not configured"
+      }
+    }
+  ],
+  "timestamp": "2025-12-26T18:22:02.782276"
+}
