@@ -1,5 +1,5 @@
 import { useNavigate, useLocation } from 'react-router-dom';
-import { Home, Package, TrendingUp, History } from 'lucide-react';
+import { Home, Package, TrendingUp, History, Settings } from 'lucide-react';
 
 const Sidebar = () => {
   const navigate = useNavigate();
@@ -10,6 +10,7 @@ const Sidebar = () => {
     { path: '/orders', icon: History, label: 'Orders' },
     { path: '/inventory', icon: Package, label: 'Inventory' },
     { path: '/analytics', icon: TrendingUp, label: 'Analytics' },
+    { path: '/settings', icon: Settings, label: 'Settings' },
   ];
 
   return (
