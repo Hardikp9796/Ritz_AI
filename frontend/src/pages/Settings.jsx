@@ -20,9 +20,13 @@ const Settings = () => {
   const [offers, setOffers] = useState([]);
   const [newOffer, setNewOffer] = useState({
     name: '',
+    offer_type: 'combo', // 'percentage' or 'combo'
     discount_percent: 0,
+    combo_items: [],
+    combo_price: 0,
     applicable_categories: []
   });
+  const [showItemSelector, setShowItemSelector] = useState(false);
 
   useEffect(() => {
     fetchMenuItems();
@@ -67,19 +71,58 @@ const Settings = () => {
   };
 
   const handleCreateOffer = async () => {
-    if (!newOffer.name || newOffer.discount_percent <= 0) {
-      toast.error('Please fill all offer details');
+    if (!newOffer.name) {
+      toast.error('Please enter offer name');
       return;
+    }
+
+    if (newOffer.offer_type === 'combo') {
+      if (newOffer.combo_items.length === 0 || newOffer.combo_price <= 0) {
+        toast.error('Please select items and set combo price');
+        return;
+      }
+    } else {
+      if (newOffer.discount_percent <= 0) {
+        toast.error('Please enter discount percentage');
+        return;
+      }
     }
 
     try {
       const response = await axios.post(`${API}/offers`, newOffer);
       setOffers([...offers, response.data]);
       toast.success('Offer created successfully');
-      setNewOffer({ name: '', discount_percent: 0, applicable_categories: [] });
+      setNewOffer({ 
+        name: '', 
+        offer_type: 'combo',
+        discount_percent: 0,
+        combo_items: [],
+        combo_price: 0,
+        applicable_categories: [] 
+      });
+      setShowItemSelector(false);
     } catch (error) {
       toast.error('Failed to create offer');
     }
+  };
+
+  const toggleItemInCombo = (item) => {
+    const isSelected = newOffer.combo_items.some(i => i.id === item.id);
+    if (isSelected) {
+      setNewOffer({
+        ...newOffer,
+        combo_items: newOffer.combo_items.filter(i => i.id !== item.id)
+      });
+    } else {
+      setNewOffer({
+        ...newOffer,
+        combo_items: [...newOffer.combo_items, { id: item.id, name: item.name, price: item.price }]
+      });
+    }
+  };
+
+  const calculateOriginalPrice = () => {
+    return newOffer.combo_items.reduce((sum, item) => sum + item.price, 0);
   };
 
   const handleDeleteOffer = async (offerId) => {
@@ -220,25 +263,105 @@ const Settings = () => {
                     <Input
                       value={newOffer.name}
                       onChange={(e) => setNewOffer({ ...newOffer, name: e.target.value })}
-                      placeholder="e.g., Happy Hour Special"
+                      placeholder="e.g., Lunch Special, Family Deal"
                       className="bg-slate-800 border-slate-700"
                     />
                   </div>
 
                   <div>
-                    <Label className="text-slate-300 mb-2 block">Discount Percentage</Label>
-                    <Input
-                      type="number"
-                      value={newOffer.discount_percent}
-                      onChange={(e) => setNewOffer({ ...newOffer, discount_percent: Number(e.target.value) })}
-                      placeholder="e.g., 15"
-                      className="bg-slate-800 border-slate-700"
-                    />
+                    <Label className="text-slate-300 mb-2 block">Offer Type</Label>
+                    <select
+                      value={newOffer.offer_type}
+                      onChange={(e) => setNewOffer({ ...newOffer, offer_type: e.target.value })}
+                      className="w-full bg-slate-800 border border-slate-700 rounded-md p-2 text-slate-100"
+                    >
+                      <option value="combo">Combo Deal (Select items + Set price)</option>
+                      <option value="percentage">Percentage Discount</option>
+                    </select>
                   </div>
+
+                  {newOffer.offer_type === 'combo' ? (
+                    <>
+                      <div>
+                        <Label className="text-slate-300 mb-2 block">Select Items for Combo</Label>
+                        <Button
+                          onClick={() => setShowItemSelector(!showItemSelector)}
+                          variant="outline"
+                          className="w-full border-orange-500 text-orange-500 hover:bg-orange-500 hover:text-white"
+                        >
+                          {newOffer.combo_items.length > 0 
+                            ? `${newOffer.combo_items.length} items selected` 
+                            : 'Click to select items'}
+                        </Button>
+                      </div>
+
+                      {showItemSelector && (
+                        <div className="bg-slate-800 border border-slate-700 rounded-lg p-4 max-h-64 overflow-y-auto">
+                          <p className="text-slate-400 text-sm mb-3">Select items to include in this combo:</p>
+                          <div className="space-y-2">
+                            {menuItems.filter(item => !item.category.includes('combo')).map((item) => (
+                              <div key={item.id} className="flex items-center gap-2">
+                                <input
+                                  type="checkbox"
+                                  checked={newOffer.combo_items.some(i => i.id === item.id)}
+                                  onChange={() => toggleItemInCombo(item)}
+                                  className="w-4 h-4"
+                                />
+                                <span className="text-slate-100 text-sm flex-1">{item.name}</span>
+                                <span className="text-slate-400 text-sm">₹{item.price}</span>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+
+                      {newOffer.combo_items.length > 0 && (
+                        <div className="bg-slate-800 border border-slate-700 rounded-lg p-4">
+                          <p className="text-slate-300 text-sm font-medium mb-2">Selected Items:</p>
+                          {newOffer.combo_items.map((item, idx) => (
+                            <div key={idx} className="text-slate-400 text-sm">• {item.name} (₹{item.price})</div>
+                          ))}
+                          <div className="mt-3 pt-3 border-t border-slate-700">
+                            <p className="text-slate-300 font-medium">
+                              Original Price: ₹{calculateOriginalPrice()}
+                            </p>
+                          </div>
+                        </div>
+                      )}
+
+                      <div>
+                        <Label className="text-slate-300 mb-2 block">Combo Offer Price</Label>
+                        <Input
+                          type="number"
+                          value={newOffer.combo_price}
+                          onChange={(e) => setNewOffer({ ...newOffer, combo_price: Number(e.target.value) })}
+                          placeholder="e.g., 599"
+                          className="bg-slate-800 border-slate-700"
+                        />
+                        {newOffer.combo_price > 0 && calculateOriginalPrice() > 0 && (
+                          <p className="text-green-400 text-sm mt-1">
+                            Savings: ₹{(calculateOriginalPrice() - newOffer.combo_price).toFixed(0)} 
+                            ({(((calculateOriginalPrice() - newOffer.combo_price) / calculateOriginalPrice()) * 100).toFixed(0)}% off)
+                          </p>
+                        )}
+                      </div>
+                    </>
+                  ) : (
+                    <div>
+                      <Label className="text-slate-300 mb-2 block">Discount Percentage</Label>
+                      <Input
+                        type="number"
+                        value={newOffer.discount_percent}
+                        onChange={(e) => setNewOffer({ ...newOffer, discount_percent: Number(e.target.value) })}
+                        placeholder="e.g., 15"
+                        className="bg-slate-800 border-slate-700"
+                      />
+                    </div>
+                  )}
 
                   <Button
                     onClick={handleCreateOffer}
-                    className="w-full bg-orange-500 hover:bg-orange-600 text-white"
+                    className="w-full bg-orange-500 hover:bg-orange-600 text-white text-lg h-12"
                   >
                     Create Offer
                   </Button>
@@ -257,21 +380,37 @@ const Settings = () => {
                   ) : (
                     <div className="space-y-3">
                       {offers.map((offer) => (
-                        <div key={offer.id} className="flex items-center justify-between p-4 bg-slate-800 rounded-lg">
-                          <div>
-                            <h3 className="font-medium text-slate-100">{offer.name}</h3>
-                            <Badge className="mt-1 bg-green-500/20 text-green-400">
-                              {offer.discount_percent}% OFF
-                            </Badge>
+                        <div key={offer.id} className="p-4 bg-slate-800 rounded-lg border border-slate-700">
+                          <div className="flex items-start justify-between">
+                            <div className="flex-1">
+                              <h3 className="font-medium text-slate-100 text-lg">{offer.name}</h3>
+                              {offer.offer_type === 'combo' ? (
+                                <div className="mt-2">
+                                  <Badge className="bg-orange-500/20 text-orange-400 mb-2">
+                                    Combo Deal - ₹{offer.combo_price}
+                                  </Badge>
+                                  <div className="text-slate-400 text-sm mt-2">
+                                    <p className="font-medium text-slate-300 mb-1">Includes:</p>
+                                    {offer.combo_items?.map((item, idx) => (
+                                      <p key={idx}>• {item.name}</p>
+                                    ))}
+                                  </div>
+                                </div>
+                              ) : (
+                                <Badge className="mt-1 bg-green-500/20 text-green-400">
+                                  {offer.discount_percent}% OFF
+                                </Badge>
+                              )}
+                            </div>
+                            <Button
+                              variant="ghost"
+                              size="icon"
+                              onClick={() => handleDeleteOffer(offer.id)}
+                              className="text-red-400 hover:text-red-300"
+                            >
+                              <X className="w-4 h-4" />
+                            </Button>
                           </div>
-                          <Button
-                            variant="ghost"
-                            size="icon"
-                            onClick={() => handleDeleteOffer(offer.id)}
-                            className="text-red-400 hover:text-red-300"
-                          >
-                            <X className="w-4 h-4" />
-                          </Button>
                         </div>
                       ))}
                     </div>
