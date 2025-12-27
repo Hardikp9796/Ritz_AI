@@ -264,21 +264,36 @@ async def update_inventory(item_id: str, update: InventoryUpdate):
     return {"status": "success"}
 
 @api_router.get("/analytics/sales")
-async def get_sales_analytics(period: str = "today"):
+async def get_sales_analytics(period: str = "today", start_date: str = None, end_date: str = None):
     from datetime import timedelta
     
     now = datetime.now(timezone.utc)
-    if period == "today":
-        start_date = now.replace(hour=0, minute=0, second=0, microsecond=0)
+    
+    # Handle custom date range
+    if start_date and end_date:
+        try:
+            start_dt = datetime.fromisoformat(start_date).replace(tzinfo=timezone.utc)
+            end_dt = datetime.fromisoformat(end_date).replace(hour=23, minute=59, second=59, tzinfo=timezone.utc)
+        except ValueError:
+            raise HTTPException(status_code=400, detail="Invalid date format. Use YYYY-MM-DD")
+    elif period == "today":
+        start_dt = now.replace(hour=0, minute=0, second=0, microsecond=0)
+        end_dt = now
     elif period == "week":
-        start_date = now - timedelta(days=7)
+        start_dt = now - timedelta(days=7)
+        end_dt = now
     elif period == "month":
-        start_date = now - timedelta(days=30)
+        start_dt = now - timedelta(days=30)
+        end_dt = now
     else:
-        start_date = now.replace(hour=0, minute=0, second=0, microsecond=0)
+        start_dt = now.replace(hour=0, minute=0, second=0, microsecond=0)
+        end_dt = now
     
     orders = await db.orders.find({
-        "timestamp": {"$gte": start_date.isoformat()}
+        "timestamp": {
+            "$gte": start_dt.isoformat(),
+            "$lte": end_dt.isoformat()
+        }
     }, {"_id": 0}).to_list(1000)
     
     total_sales = sum(order["total"] for order in orders)
@@ -295,7 +310,9 @@ async def get_sales_analytics(period: str = "today"):
         "total_profit": round(total_profit, 2),
         "avg_order_value": round(avg_order_value, 2),
         "cash_sales": round(cash_sales, 2),
-        "digital_sales": round(digital_sales, 2)
+        "digital_sales": round(digital_sales, 2),
+        "start_date": start_dt.isoformat(),
+        "end_date": end_dt.isoformat()
     }
 
 @api_router.get("/analytics/best-sellers")
