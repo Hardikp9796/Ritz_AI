@@ -1,0 +1,15 @@
+{
+  "business_name": "POCKETO",
+  "tagline": "NYC Style Pizza & More",
+  "address_line1": "Shop No. 5, Food Court",
+  "address_line2": "Ring Road, Surat",
+  "city": "Surat",
+  "state": "Gujarat",
+  "pincode": "395001",
+  "phone": "+91 98765 43210",
+  "email": "orders@pocketo.com",
+  "website": "www.pocketo.com",
+  "gst_number": "",
+  "receipt_footer": "Thank You for Your Order!",
+  "receipt_footer_line2": "Please visit us again"
+}

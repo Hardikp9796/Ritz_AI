@@ -203,6 +203,38 @@ async def initialize_menu():
 async def root():
     return {"message": "POCKETO POS API"}
 
+@api_router.get("/business-config")
+async def get_business_config():
+    import json
+    try:
+        with open(ROOT_DIR / 'business_config.json', 'r') as f:
+            config = json.load(f)
+        return config
+    except FileNotFoundError:
+        # Return default config
+        return {
+            "business_name": "POCKETO",
+            "tagline": "NYC Style Pizza & More",
+            "address_line1": "",
+            "address_line2": "",
+            "city": "Surat",
+            "state": "Gujarat",
+            "pincode": "",
+            "phone": "",
+            "email": "",
+            "website": "",
+            "gst_number": "",
+            "receipt_footer": "Thank You for Your Order!",
+            "receipt_footer_line2": "Please visit us again"
+        }
+
+@api_router.put("/business-config")
+async def update_business_config(config: Dict[str, Any]):
+    import json
+    with open(ROOT_DIR / 'business_config.json', 'w') as f:
+        json.dump(config, f, indent=2)
+    return {"status": "success", "config": config}
+
 @api_router.get("/menu", response_model=List[MenuItem])
 async def get_menu():
     items = await db.menu_items.find({}, {"_id": 0}).to_list(1000)

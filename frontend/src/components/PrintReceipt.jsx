@@ -1,6 +1,24 @@
-import React, { forwardRef } from 'react';
+import React, { forwardRef, useState, useEffect } from 'react';
+import axios from 'axios';
+
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 
 const PrintReceipt = forwardRef(({ orderData, orderNumber }, ref) => {
+  const [businessConfig, setBusinessConfig] = useState(null);
+
+  useEffect(() => {
+    fetchBusinessConfig();
+  }, []);
+
+  const fetchBusinessConfig = async () => {
+    try {
+      const response = await axios.get(`${BACKEND_URL}/api/business-config`);
+      setBusinessConfig(response.data);
+    } catch (error) {
+      console.error('Failed to load business config');
+    }
+  };
+
   const currentDate = new Date().toLocaleString('en-IN', {
     day: '2-digit',
     month: '2-digit',
@@ -9,6 +27,8 @@ const PrintReceipt = forwardRef(({ orderData, orderNumber }, ref) => {
     minute: '2-digit',
     hour12: true
   });
+
+  if (!businessConfig) return null;
 
   return (
     <div ref={ref} style={{ display: 'none' }}>
@@ -22,9 +42,27 @@ const PrintReceipt = forwardRef(({ orderData, orderNumber }, ref) => {
       }}>
         {/* Header */}
         <div style={{ textAlign: 'center', marginBottom: '15px', borderBottom: '2px dashed #000', paddingBottom: '10px' }}>
-          <h1 style={{ fontSize: '24px', fontWeight: 'bold', margin: '5px 0', letterSpacing: '2px' }}>POCKETO</h1>
-          <p style={{ fontSize: '11px', margin: '3px 0' }}>NYC Style Pizza & More</p>
-          <p style={{ fontSize: '10px', margin: '3px 0' }}>Surat, Gujarat</p>
+          <h1 style={{ fontSize: '24px', fontWeight: 'bold', margin: '5px 0', letterSpacing: '2px' }}>
+            {businessConfig.business_name}
+          </h1>
+          {businessConfig.tagline && (
+            <p style={{ fontSize: '11px', margin: '3px 0' }}>{businessConfig.tagline}</p>
+          )}
+          {businessConfig.address_line1 && (
+            <p style={{ fontSize: '10px', margin: '3px 0' }}>{businessConfig.address_line1}</p>
+          )}
+          {businessConfig.address_line2 && (
+            <p style={{ fontSize: '10px', margin: '3px 0' }}>{businessConfig.address_line2}</p>
+          )}
+          <p style={{ fontSize: '10px', margin: '3px 0' }}>
+            {businessConfig.city}{businessConfig.state ? `, ${businessConfig.state}` : ''}{businessConfig.pincode ? ` - ${businessConfig.pincode}` : ''}
+          </p>
+          {businessConfig.phone && (
+            <p style={{ fontSize: '10px', margin: '3px 0' }}>Ph: {businessConfig.phone}</p>
+          )}
+          {businessConfig.gst_number && (
+            <p style={{ fontSize: '10px', margin: '3px 0' }}>GST: {businessConfig.gst_number}</p>
+          )}
         </div>
 
         {/* Order Info */}
@@ -83,8 +121,16 @@ const PrintReceipt = forwardRef(({ orderData, orderNumber }, ref) => {
 
         {/* Footer */}
         <div style={{ textAlign: 'center', borderTop: '2px dashed #000', paddingTop: '10px', fontSize: '11px' }}>
-          <p style={{ margin: '5px 0', fontWeight: 'bold' }}>Thank You for Your Order!</p>
-          <p style={{ margin: '5px 0' }}>Please visit us again</p>
+          <p style={{ margin: '5px 0', fontWeight: 'bold' }}>{businessConfig.receipt_footer}</p>
+          {businessConfig.receipt_footer_line2 && (
+            <p style={{ margin: '5px 0' }}>{businessConfig.receipt_footer_line2}</p>
+          )}
+          {businessConfig.website && (
+            <p style={{ margin: '5px 0', fontSize: '10px' }}>{businessConfig.website}</p>
+          )}
+          {businessConfig.email && (
+            <p style={{ margin: '5px 0', fontSize: '10px' }}>{businessConfig.email}</p>
+          )}
           <p style={{ margin: '8px 0', fontSize: '10px' }}>Powered by POCKETO POS</p>
         </div>
       </div>
