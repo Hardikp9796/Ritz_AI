@@ -15,21 +15,42 @@ const Analytics = () => {
   const [analytics, setAnalytics] = useState(null);
   const [bestSellers, setBestSellers] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [customStartDate, setCustomStartDate] = useState('');
+  const [customEndDate, setCustomEndDate] = useState('');
+  const [showCustomRange, setShowCustomRange] = useState(false);
 
   useEffect(() => {
     fetchAnalytics();
     fetchBestSellers();
-  }, [period]);
+  }, [period, customStartDate, customEndDate]);
 
   const fetchAnalytics = async () => {
     try {
-      const response = await axios.get(`${API}/analytics/sales?period=${period}`);
+      let url = `${API}/analytics/sales?period=${period}`;
+      if (period === 'custom' && customStartDate && customEndDate) {
+        url = `${API}/analytics/sales?start_date=${customStartDate}&end_date=${customEndDate}`;
+      }
+      const response = await axios.get(url);
       setAnalytics(response.data);
     } catch (error) {
       toast.error('Failed to load analytics');
     } finally {
       setLoading(false);
     }
+  };
+
+  const handleCustomRangeApply = () => {
+    if (!customStartDate || !customEndDate) {
+      toast.error('Please select both start and end dates');
+      return;
+    }
+    if (new Date(customStartDate) > new Date(customEndDate)) {
+      toast.error('Start date must be before end date');
+      return;
+    }
+    setPeriod('custom');
+    setShowCustomRange(false);
+    fetchAnalytics();
   };
 
   const fetchBestSellers = async () => {
@@ -61,13 +82,64 @@ const Analytics = () => {
             <p className="text-slate-400 text-sm uppercase tracking-wider">Track your business performance</p>
           </div>
 
-          <Tabs value={period} onValueChange={setPeriod} className="mb-8">
-            <TabsList className="bg-slate-900 border border-slate-800" data-testid="period-selector">
-              <TabsTrigger value="today" data-testid="period-today">Today</TabsTrigger>
-              <TabsTrigger value="week" data-testid="period-week">This Week</TabsTrigger>
-              <TabsTrigger value="month" data-testid="period-month">This Month</TabsTrigger>
-            </TabsList>
-          </Tabs>
+          <div className="mb-8">
+            <Tabs value={period} onValueChange={(val) => { setPeriod(val); if(val === 'custom') setShowCustomRange(true); }}>
+              <TabsList className="bg-slate-900 border border-slate-800" data-testid="period-selector">
+                <TabsTrigger value="today" data-testid="period-today">Today</TabsTrigger>
+                <TabsTrigger value="week" data-testid="period-week">This Week</TabsTrigger>
+                <TabsTrigger value="month" data-testid="period-month">This Month</TabsTrigger>
+                <TabsTrigger value="custom" data-testid="period-custom">Custom Range</TabsTrigger>
+              </TabsList>
+            </Tabs>
+
+            {showCustomRange && (
+              <Card className="bg-slate-900 border-slate-800 mt-4" data-testid="custom-date-range">
+                <CardContent className="p-4">
+                  <div className="flex items-end gap-4">
+                    <div className="flex-1">
+                      <Label className="text-slate-300 mb-2 block">Start Date</Label>
+                      <Input
+                        type="date"
+                        value={customStartDate}
+                        onChange={(e) => setCustomStartDate(e.target.value)}
+                        className="bg-slate-800 border-slate-700"
+                        data-testid="start-date-input"
+                      />
+                    </div>
+                    <div className="flex-1">
+                      <Label className="text-slate-300 mb-2 block">End Date</Label>
+                      <Input
+                        type="date"
+                        value={customEndDate}
+                        onChange={(e) => setCustomEndDate(e.target.value)}
+                        className="bg-slate-800 border-slate-700"
+                        data-testid="end-date-input"
+                      />
+                    </div>
+                    <Button
+                      onClick={handleCustomRangeApply}
+                      className="bg-orange-500 hover:bg-orange-600"
+                      data-testid="apply-custom-range"
+                    >
+                      Apply Range
+                    </Button>
+                    <Button
+                      variant="outline"
+                      onClick={() => setShowCustomRange(false)}
+                      data-testid="cancel-custom-range"
+                    >
+                      Cancel
+                    </Button>
+                  </div>
+                  {period === 'custom' && customStartDate && customEndDate && (
+                    <p className="text-slate-400 text-sm mt-3">
+                      Showing data from {new Date(customStartDate).toLocaleDateString()} to {new Date(customEndDate).toLocaleDateString()}
+                    </p>
+                  )}
+                </CardContent>
+              </Card>
+            )}
+          </div>
 
           {loading ? (
             <div className="text-center py-12 text-slate-400">Loading analytics...</div>
