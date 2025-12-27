@@ -86,14 +86,20 @@ class Offer(BaseModel):
     model_config = ConfigDict(extra="ignore")
     id: str = Field(default_factory=lambda: str(uuid.uuid4()))
     name: str
-    discount_percent: float
+    offer_type: str = "percentage"  # 'percentage' or 'combo'
+    discount_percent: float = 0
+    combo_items: List[Dict[str, Any]] = []
+    combo_price: float = 0
     applicable_categories: List[str] = []
     active: bool = True
     created_at: str = Field(default_factory=lambda: datetime.now(timezone.utc).isoformat())
 
 class OfferCreate(BaseModel):
     name: str
-    discount_percent: float
+    offer_type: str = "percentage"
+    discount_percent: float = 0
+    combo_items: List[Dict[str, Any]] = []
+    combo_price: float = 0
     applicable_categories: List[str] = []
 
 class AnalyticsResponse(BaseModel):
